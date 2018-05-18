@@ -5,3 +5,5 @@ node_modules
 .vscode
 *.log
 .env*
+src/qnary-my-fb.json
+src/qnary-dev.json
