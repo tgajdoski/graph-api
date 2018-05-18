@@ -6,7 +6,7 @@ const Lodash = require('lodash');
 
 const orgsRef = admin.database().ref('organizations');
 
-const organizations = {
+export const organizations = {
   organizations(_, { }, ctx) {
     return  query({}, ctx , orgsRef);
    },
@@ -14,5 +14,3 @@ const organizations = {
     return  query({ id }, ctx , orgsRef);
    },
 }
-
-export default { organizations }

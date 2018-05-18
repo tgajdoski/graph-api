@@ -30,5 +30,5 @@ const getUserId = async (req, res, next) => {
    });
   }
   
-  module.exports = { getUserId }
+export default { getUserId }
   

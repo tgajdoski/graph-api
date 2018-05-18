@@ -5,7 +5,7 @@ const { create_mutation, update_mutation, delete_mutation } = require("../query"
 
 const devicesRef = admin.database().ref('devices');
 
-const devices_mutation = {
+export const devices_mutation = {
   createDevice(_, { input }, ctx) {
     return create_mutation({input}, ctx, devicesRef);
   },
@@ -17,4 +17,3 @@ const devices_mutation = {
   },
 }
 
-export default {devices_mutation }

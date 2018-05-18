@@ -6,7 +6,7 @@ const Lodash = require('lodash');
 
 const orgsusrappRef = admin.database().ref('organization_user_approvals');
 
-const organization_user_approvals = {
+export const organization_user_approvals = {
   
   organization_user_approvals(_, { oid, uid }, ctx) {
     const orgsRef = orgsusrappRef.child(`${oid}/${uid}`);
@@ -17,5 +17,3 @@ const organization_user_approvals = {
     return  query({ id }, ctx , orgsRef);
    },
 }
-
-export default { organization_user_approvals }

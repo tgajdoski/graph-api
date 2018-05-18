@@ -6,7 +6,7 @@ const Lodash = require('lodash');
 
 const groupsRef = admin.database().ref('groups');
 
-const groups = {
+export const groups = {
   groups(_, { }, ctx) {
     return  query({}, ctx , groupsRef);
     },
@@ -14,5 +14,3 @@ const groups = {
       return  query({ id }, ctx , groupsRef);
     },
 }
-
-export default { groups }

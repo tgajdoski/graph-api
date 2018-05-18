@@ -4,8 +4,7 @@ const Lodash = require('lodash');
 const { create_mutation, update_mutation, delete_mutation } = require("../query");
 
 const approvalsRef = admin.database().ref('approvals');
-
-const approvals_mutation = {
+export const  approvals_mutation = {
    createApproval(_, {input }, ctx) {
     return create_mutation({input}, ctx, approvalsRef)
   },
@@ -16,5 +15,3 @@ const approvals_mutation = {
     return delete_mutation({input}, ctx, approvalsRef)
   },
 }
-
-export default { approvals_mutation }

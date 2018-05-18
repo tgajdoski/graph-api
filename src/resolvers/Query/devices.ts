@@ -6,7 +6,7 @@ const Lodash = require('lodash');
 
 const devicesRef = admin.database().ref('devices');
 
-const devices = {
+export const devices = {
   devices(_, { }, ctx) {
     return  query( {}, ctx , devicesRef);
     },
@@ -14,5 +14,3 @@ const devices = {
       return  query({ id }, ctx , devicesRef);
     },
 }
-
-export default { devices }

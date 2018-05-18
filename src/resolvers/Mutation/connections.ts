@@ -5,7 +5,7 @@ const { create_mutation, update_mutation, delete_mutation } = require("../query"
 
 const connectionsRef = admin.database().ref('connections');
 
-const connections_mutation = {
+export const connections_mutation = {
   createConnection(_, { input }, ctx) {
     return create_mutation({input}, ctx, connectionsRef);
   },
@@ -16,4 +16,4 @@ const connections_mutation = {
     return delete_mutation({input}, ctx, connectionsRef);
    },
   }
-  export default { connections_mutation }
+

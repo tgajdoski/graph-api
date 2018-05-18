@@ -5,7 +5,7 @@ const { create_mutation, update_mutation, delete_mutation } = require("../query"
 
 const groupsRef = admin.database().ref('groups');
 
-const groups_mutation = {
+export const groups_mutation = {
    createGroup(_, { input }, ctx) {
     return create_mutation({input}, ctx, groupsRef);
   },
@@ -17,4 +17,3 @@ const groups_mutation = {
   },
 }
 
-export default { groups_mutation }

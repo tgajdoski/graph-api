@@ -7,7 +7,7 @@ const Lodash = require('lodash');
 
 const connectionsRef = admin.database().ref('connections');
 
-const connections = {
+export const connections = {
     connections(_, { }, ctx) {
       return  query({}, ctx , connectionsRef);
         },
@@ -16,4 +16,3 @@ const connections = {
         },
   }
   
-  export default { connections }

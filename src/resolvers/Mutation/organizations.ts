@@ -5,7 +5,7 @@ const { create_mutation, update_mutation, delete_mutation } = require("../query"
 
 const orgsRef = admin.database().ref('organizations');
 
-const organizations_mutation = {
+export const organizations_mutation = {
   createOrganization(_, { input }, ctx) {
     return create_mutation({input}, ctx, orgsRef);
   },
@@ -16,5 +16,3 @@ const organizations_mutation = {
     return delete_mutation({input}, ctx, orgsRef);
   },
 }
-
-export default { organizations_mutation }

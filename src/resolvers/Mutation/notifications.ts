@@ -4,7 +4,7 @@ const Lodash = require('lodash');
 
 const notificationRef = admin.database().ref('notifications');
 
-const notifications_mutation = {
+export const notifications_mutation = {
    createNotification(_, {input }, ctx) {
     let notificationplatformRef = notificationRef.child(`/${input.platform}/${input.device.id}`)
     return (
@@ -41,4 +41,3 @@ const notifications_mutation = {
     .then(obj => notificationplatformRef.remove().then(() => (obj)));
   },
 }
-export default { notifications_mutation }

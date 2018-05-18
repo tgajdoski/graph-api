@@ -30,7 +30,7 @@ firebase.initializeApp({
 
 export const auth = {
  
-async  login(parent, { email, password }, ctx, info) {
+async login(parent, { email, password }, ctx, info) {
    const data = await firebase.auth().signInWithEmailAndPassword(email, password)
    const user  = data.user;
 

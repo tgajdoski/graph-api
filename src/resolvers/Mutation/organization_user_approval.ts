@@ -5,7 +5,7 @@ const { create_mutation, update_mutation, delete_mutation } = require("../query"
 
 const orgsusrappRef = admin.database().ref('organization_user_approvals');
 
-const organization_user_approvals_mutation = {
+export const organization_user_approvals_mutation = {
   createOrganizationUserApproval(_, { input }, ctx) {
     const orgRef = orgsusrappRef.child(`${input.oid}/${input.uid}`);
     return create_mutation({input}, ctx, orgRef);
@@ -20,4 +20,3 @@ const organization_user_approvals_mutation = {
   },
 }
 
-export default { organization_user_approvals_mutation }

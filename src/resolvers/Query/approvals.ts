@@ -34,7 +34,7 @@ function isPending(approval) {
   return approval.status === ApprovalStatus.Sent;
 }
 
-const approvals = {
+export const approvals = {
   approvals(_, {}, ctx) {
     console.log('VNATRE SME ' , ctx);
     return query({}, ctx, approvalsRef);
@@ -78,4 +78,3 @@ const approvals = {
   }
 };
 
-export default {approvals };

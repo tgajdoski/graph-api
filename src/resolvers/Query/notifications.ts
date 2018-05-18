@@ -6,7 +6,7 @@ var serviceAccount = require("../../qnary-dev.json");
 
 const notificationRef = admin.database().ref('notifications');
 
-const notifications = {
+export const notifications = {
  async notifications(_, {platform}, ctx) {
       //  if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
       let notificationplatformRef = notificationRef;
@@ -33,4 +33,3 @@ const notifications = {
   },
 };
 
-export default { notifications };
