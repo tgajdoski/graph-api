@@ -1,0 +1,352 @@
+{
+	approvals
+  {
+    id
+    content
+    status
+    image
+    oid
+    uid
+    publish{
+      settings{
+        opt_in
+        timezone
+      }
+      status
+      updated_at
+    }
+    publish_at
+    publish_date
+    publish_status
+  }
+}
+
+
+
+{
+	organization_user_approvals(oid: "-KjOu2EQbfZb_sxUnwJV",
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1")
+  {
+    uid
+    oid
+    status
+    source
+  }
+}
+
+
+{
+	organization_user_approval(oid: "-KjOu2EQbfZb_sxUnwJV",
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1", id:"-L096ewG1BNx3-je2w1d")
+  {
+    uid
+    oid
+    status
+    source
+  }
+}
+
+{
+  "data": {
+    "organization_user_approval": {
+      "uid": "JH6TcumpfnMDdor6c5Ksns917cq1",
+      "oid": "-KjOu2EQbfZb_sxUnwJV",
+      "status": "rejected",
+      "source": "twitter",
+      "created_at": "1513072013232",
+      "created_by": "JH6TcumpfnMDdor6c5Ksns917cq1"
+    }
+  }
+}
+
+
+
+mutation
+{
+	updateOrganizationUserApproval( input: {
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+    oid: "-KjOu2EQbfZb_sxUnwJV",
+    created_at:"1513072013232"
+    created_by:"JH6TcumpfnMDdor6c5Ksns917cq1"
+  	source: "twitter"
+    id:"-L096ewG1BNx3-je2w1d",
+    status: "rejected"
+  })
+  {
+    uid
+    oid
+    status
+    source
+  }
+}
+
+
+
+mutation
+{
+	createOrganizationUserApproval( input: {
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+    oid: "-KjOu2EQbfZb_sxUnwJV",
+    created_at:"1513072013232"
+    created_by:"JH6TcumpfnMDdor6c5Ksns917cq1"
+  	source: "twitterMITTER"
+    status: "rejected"
+  })
+  {
+    uid
+    oid
+    status
+    source
+  }
+}
+
+
+mutation
+{
+	deleteOrganizationUserApporval( input: {
+     uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+    oid: "-KjOu2EQbfZb_sxUnwJV",
+    id: "-LCYK2aYBxP-ISExCd9k"})
+  {
+    uid
+    oid
+    status
+    source
+  }
+}
+
+
+
+
+mutation
+{
+  createApproval(input: {
+    category: "Search"
+    connection_id: "-KlstxQBFe5vWL2lwq4m"
+    content: "Google MOOGLE"
+    created_at: "1498481915089"
+    created_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    edited_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    image: ""
+    oid: "-KjOu2EQbfZb_sxUnwJV"
+    original_content: "Google MOOGLE"
+    source:  "twitter"
+    status:  "rejected"
+    uid:  "JH6TcumpfnMDdor6c5Ksns917cq1"
+    updated_at:  "1499867570622"
+    updated_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+  })
+  {
+    id
+    content
+    created_at
+    image
+    status
+  }
+}
+
+mutation
+{
+	deleteApproval(input: {id: "-LCYy1hV25HLcOFFqPOb"})
+  {
+  	id
+    category
+  }
+}
+
+
+
+
+mutation
+{
+  updateApproval (input: {
+    id: "-LCYz3l7IxK4hsxVj49H"
+    category: "Search"
+    connection_id: "-KlstxQBFe5vWL2lwq4m"
+    content: "MAMAMAM"
+    created_at: "1498481915089"
+    created_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    edited_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    image: ""
+    oid: "-KjOu2EQbfZb_sxUnwJV"
+    original_content: "Google MOOGLE"
+    source:  "twitter"
+    status:  "draft"
+    uid:  "JH6TcumpfnMDdor6c5Ksns917cq1"
+    updated_at:  "1499867570622"
+    updated_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+  })
+  {
+    id
+    content
+    created_at
+    image
+    status
+  }
+}
+
+
+
+
+mutation
+{
+	createConnection(input:{
+  auth: {
+    access_token: "AQXQ4RHDT4tQXX4AE9rFKBWlz-VYT_yDF_9mXxkCh8YwwSPK_R7x3PcVQ5Rr7AOmaHEs8lKWANJYtv5YzbrhOpxnjgphdZkNJIneJVR0lD0-g0OqhNIBTDMwPz3QYmxqdBja8699j9mXngApccHWF0_IUfh0yUmS3Za4GHJO5HjDRM01EoVy1OLCzJ3LnTHjpyd7rwj9nMEgLTgziGANRKfSJkOKt584JvXvF_iMesTeBH1XzZf_Uwr9d7-MTIh02Iclw15-Z7kgocXhXZHTEJS0qCa3bHJF7Zia9kXy7QQj5C7WIv0LY76lfU3dNuhLIt7YRaiw3f7fG0iLDagpk3pT1HcD3g",
+    created_at: "1526321398102",
+    expires: "1531505423075",
+    expires_in: "5183999",
+    firebase_id: "-LCUq2lsPHK6hiKbN78v",
+    provider: "linkedin2"
+  },
+  created_at: "1526321398102",
+  created_by: "6a30e2a4-76fe-4559-b5d9-0eaec7aa2dee",
+  ignore: false,
+  name: "YOUYOU",
+  oid: "-KjOu2EQbfZb_sxUnwJV",
+  profile: {
+    avatar: "https://media.licdn.com/dms/image/C4D03AQE0GZtPkAGpdA/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=dh3sURdU6m0P48VdQ-aYzERxDSRG7_YnAgz-cndno0U",
+    bio: "Full Stack Developer",
+    email: "dreadjr+linkedin@gmail.com",
+    firstname: "Toni",
+    id: "yGJn72jYRO",
+    lastname: "Read Jr",
+    name: "Douglas Read Jr",
+    raw: {
+      emailAddress: "dreadjr+linkedin@gmail.com",
+      firstName: "Douglas",
+      headline: "Full Stack Developer",
+      id: "yGJn72jYRO",
+      lastName: "Read Jr",
+      pictureUrl: "https://media.licdn.com/dms/image/C4D03AQE0GZtPkAGpdA/profile-displayphoto-shrink_100_100/0?e=1531958400&v=beta&t=dh3sURdU6m0P48VdQ-aYzERxDSRG7_YnAgz-cndno0U",
+      publicProfileUrl: "https://www.linkedin.com/in/dreadjr"
+    },
+    url: "https://www.linkedin.com/in/dreadjr"
+  },
+  source: "linkedin",
+  source_type: "linkedin_profile",
+  status: "1",
+  type: "profile",
+  uid: "6a30e2a4-76fe-4559-b5d9-0eaec7aa2dee",
+  version: "1"
+})
+{
+ id
+  name
+  status
+  oid
+  profile
+  {
+    name
+    bio
+  }
+}
+}
+
+
+
+
+mutation
+{
+	deleteConnection(input: {
+    id: "-LCbyb4IRiNJCf1Im4Ja"
+  })
+  {
+    id
+    status
+  }
+}
+
+
+
+
+
+
+
+
+
+{
+  
+notifications (platform: "ios")
+  {
+    id
+   app
+    device{
+    available
+      cordova 
+      isVirtual
+       manufacturer
+      model
+      platform
+      serial
+      uuid
+      version
+    }
+    sms{
+      countrycode
+      intlprefix
+    }
+    status
+    token
+    uid
+  }
+}
+
+
+
+
+
+mutation
+
+{
+updateNotification(input: 
+  {
+  app : "qnary",
+  created_at : "MMMMMMMMMM",
+  device : {
+    id: "55555555555",
+    available : true,
+    cordova : "4.5.4",
+    isVirtual : false,
+    manufacturer : "APPPLE",
+    model : "iPhone8,1",
+    platform : "iOS",
+    serial : "unknown",
+    uuid : "167ED895-3D6D-4D6E-9A95-AB46DDF3D6ED",
+    version : "11.3.1"
+  },
+  platform : "ios",
+  sms : {
+    countrycode : "us",
+    intlprefix : "1",
+    phonenumber : "(603) 219-9191"
+  },
+  status : 1,
+  token : "6032199191",
+  uid : "6a30e2a4-76fe-4559-b5d9-0eaec7aa2dee"
+})
+  {
+    id
+   app
+    device{
+    available
+      cordova 
+      isVirtual
+       manufacturer
+      model
+      platform
+      serial
+      uuid
+      version
+    }
+    sms{
+      countrycode
+      intlprefix
+    }
+    status
+    token
+    uid
+  }
+}
+
+

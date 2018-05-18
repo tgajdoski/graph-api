@@ -9,13 +9,6 @@ const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 const Lodash = require("lodash");
 var serviceAccount = require("../../qnary-dev.json");
-// import * as firebase from 'firebase';
-
-
-// firebase.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL:"https://qnary-dev.firebaseio.com",
-// });
 
 
 firebase.initializeApp({
