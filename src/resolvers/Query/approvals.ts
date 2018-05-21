@@ -66,14 +66,20 @@ export const approvals = {
       let id = app.key;
       let approval = app.val();
       // org_user_app status can differ from /approvals status ???
-      if (Lodash.isNil(status)){
-         returnApps.push(Object.assign({ id: id }, approval));
-      }
-      else
-        if (approval.status === status)
-        returnApps.push(Object.assign({ id: id }, approval));
-         
+      if (!Lodash.isNil(approval))
+        if (Lodash.isNil(status)){
+          returnApps.push(Object.assign({ id: id }, approval));
+        }
+        else
+        {
+          console.log('status ', status);
+          console.log('approval ', approval);
+          console.log('approval.status', approval.status);
+          if (approval.status === status)
+          returnApps.push(Object.assign({ id: id }, approval));
+        }  
     });
+    
     return returnApps;
   }
 };
