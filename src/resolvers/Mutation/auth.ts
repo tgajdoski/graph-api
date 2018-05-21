@@ -38,10 +38,15 @@ async login(parent, { email, password }, ctx, info) {
       throw new Error(`No such user found for email: ${email}`)
     const user_org_snap = await admin.database().ref(`user_organizations/${user.uid}`).once("value");
     const user_org = user_org_snap.val();
-  
+    let userwithoid =  Lodash.pick(user, ['uid', 'displayName' , 'email'])
+
+    Object.keys(user_org).map(o => {
+        if (user_org[o].default)
+          userwithoid = Object.assign({oid: o}, userwithoid)
+      })
     return {
         token: await user.getIdToken(true) , // jwt.sign({ userId: 'aaa' }, process.env.APP_SECRET),
-        user:   Lodash.pick(user, ['uid', 'displayName' , 'email']),
+        user: userwithoid ,
         user_organizations: Object.keys(user_org).map(o => Object.assign({oid: o}, user_org[o]))
       }
   },

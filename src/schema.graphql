@@ -10,6 +10,7 @@ type User {
   uid: String 
   displayName: String
   email: String
+  oid: String
 }
 
 
