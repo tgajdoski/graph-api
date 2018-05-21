@@ -3,12 +3,26 @@
 type AuthPayload {
   token: String!
   user: User  
+  user_organizations : [User_Organization]
 }
 
 type User {
   uid: String 
   displayName: String
   email: String
+}
+
+
+type Role{
+  admin: Boolean
+  freelancer: Boolean
+  user: Boolean
+}
+
+type User_Organization {
+  account_type: String
+  default: Boolean
+  roles : Role
 }
 
 type Query {

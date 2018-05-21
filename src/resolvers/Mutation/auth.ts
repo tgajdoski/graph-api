@@ -33,14 +33,15 @@ export const auth = {
 async login(parent, { email, password }, ctx, info) {
    const data = await firebase.auth().signInWithEmailAndPassword(email, password)
    const user  = data.user;
-
+  
     if (!user)
       throw new Error(`No such user found for email: ${email}`)
-
+    const user_org_snap = await admin.database().ref(`user_organizations/${user.uid}`).once("value");
+    const user_org = user_org_snap.val();
     return {
         token: await user.getIdToken(true) , // jwt.sign({ userId: 'aaa' }, process.env.APP_SECRET),
-        user:   Lodash.pick(user, ['uid', 'displayName' , 'email'])
-        
+        user:   Lodash.pick(user, ['uid', 'displayName' , 'email']),
+        user_organizations: Object.values(user_org)
       }
   },
 }
