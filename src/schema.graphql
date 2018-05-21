@@ -20,6 +20,7 @@ type Role{
 }
 
 type User_Organization {
+  oid: String!
   account_type: String
   default: Boolean
   roles : Role
