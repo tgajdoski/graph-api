@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-var serviceAccount = require('../qnary-my-fb.json');
+var serviceAccount = require('../qnary-dev.json');
 const Lodash = require("lodash");
 
 const query = async ({id}, ctx, ref) => {
