@@ -349,3 +349,32 @@ updateNotification(input:
 }
 
 
+
+mutation{
+login(email: "t.gajdoski@gmail.com" , password: "AAAA")
+  {
+    token
+    user
+    {
+      oid
+      uid
+      displayName
+      email
+    }
+    user_organizations
+    {
+      	oid
+        account_type
+        default
+        roles
+        {
+          admin
+          freelancer
+          user
+        }
+      }
+    }
+}
+
+
+
