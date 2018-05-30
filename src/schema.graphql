@@ -2,8 +2,14 @@
 
 type AuthPayload {
   token: String!
+  refreshtoken: String! 
   user: User  
   user_organizations : [User_Organization]
+}
+
+type refreshPayload {
+  token: String!
+  refreshtoken: String! 
 }
 
 type User {
@@ -54,6 +60,7 @@ type Query {
 type Mutation {
 
   login(email: String!, password: String!): AuthPayload!
+  refreshtokens(refreshToken: String!): refreshPayload 
   createApproval(input: ApprovalCreateInput!): Approval
   updateApproval(input: ApprovalInput): Approval
   deleteApproval(input: ApprovalDeleteInput): Approval
