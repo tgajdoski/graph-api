@@ -27,9 +27,8 @@ export const auth = {
  
 async login(parent, { email, password }, ctx, info) {
    const data = await firebase.auth().signInWithEmailAndPassword(email, password)
-   console.log('data user refresh ' , data.user.refreshToken);
    const user  = data.user;
-  
+ 
     if (!user)
       throw new Error(`No such user found for email: ${email}`)
     const user_org_snap = await admin.database().ref(`user_organizations/${user.uid}`).once("value");
@@ -44,7 +43,7 @@ async login(parent, { email, password }, ctx, info) {
         token: await user.getIdToken(true) , // jwt.sign({ userId: 'aaa' }, process.env.APP_SECRET),
         refreshtoken: await user.refreshToken,
         user: userwithoid ,
-        user_organizations: Object.keys(user_org).map(o => Object.assign({oid: o}, user_org[o]))
+        organizations: Object.keys(user_org).map(o => Object.assign({oid: o}, user_org[o]))
       }
   },
    async refreshtokens(parent, { refreshToken }, ctx, info) {

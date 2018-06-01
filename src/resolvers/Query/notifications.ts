@@ -8,7 +8,7 @@ const notificationRef = admin.database().ref('notifications');
 
 export const notifications = {
  async notifications(_, {platform}, ctx) {
-      //  if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
       let notificationplatformRef = notificationRef;
     if (!Lodash.isNil(platform))
       notificationplatformRef = notificationRef.child(`/${platform}`)
@@ -19,8 +19,8 @@ export const notifications = {
     )
   },
   async notification(_, { platform, id }, ctx) {
-     //  if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
-     let notificationplatformRef = notificationRef;
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+    let notificationplatformRef = notificationRef;
     if (!Lodash.isNil(platform) && !Lodash.isNil(id)) 
       notificationplatformRef = notificationRef.child(`/${platform}/${id}`)
     let value = await admin.database().ref(notificationplatformRef).once("value")

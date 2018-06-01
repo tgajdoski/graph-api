@@ -4,7 +4,7 @@ type AuthPayload {
   token: String!
   refreshtoken: String! 
   user: User  
-  user_organizations : [User_Organization]
+  organizations : [User_Organization]
 }
 
 type refreshPayload {

@@ -5,7 +5,9 @@ const Lodash = require('lodash');
 const notificationRef = admin.database().ref('notifications');
 
 export const notifications_mutation = {
+
    createNotification(_, {input }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
     let notificationplatformRef = notificationRef.child(`/${input.platform}/${input.device.id}`)
     return (
       new Promise((resolve) => {
@@ -17,6 +19,7 @@ export const notifications_mutation = {
     );
   },
    updateNotification(_, {input }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
     let notificationplatformRef = notificationRef.child(`/${input.platform}/${input.device.id}`)
     return notificationplatformRef.once('value')
     .then(snapshot => {
@@ -31,6 +34,7 @@ export const notifications_mutation = {
     });
   },
    deleteNotification(_, { input }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
     let notificationplatformRef = notificationRef.child(`/${input.platform}/${input.id}`)
     return notificationplatformRef.once('value')
     .then((snapshot) => {
