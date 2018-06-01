@@ -53,7 +53,7 @@ export const auth = {
     let refUrl = `https://securetoken.googleapis.com/v1/token?key=${
       process.env.apiKey
     }&grant_type=refresh_token&refresh_token=${refreshToken}`;
-    console.log("URL ", refUrl);
+    //console.log("URL ", refUrl);
     var res = await axios.post(refUrl);
     if (res.data)
       return {

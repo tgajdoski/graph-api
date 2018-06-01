@@ -30,7 +30,6 @@ function isPending(approval) {
 
 export const approvals = {
   approvals(_, {}, ctx) {
-    console.log('VNATRE SME ' , ctx);
     return query({}, ctx, approvalsRef);
   },
   approval(_, { id }, ctx) {
@@ -66,9 +65,6 @@ export const approvals = {
         }
         else
         {
-          console.log('status ', status);
-          console.log('approval ', approval);
-          console.log('approval.status', approval.status);
           if (approval.status === status)
           returnApps.push(Object.assign({ id: id }, approval));
         }  
