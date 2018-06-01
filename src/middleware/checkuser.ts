@@ -2,7 +2,9 @@ const admin = require("firebase-admin");
 var serviceAccount = require('../qnary-dev.json');
 const Lodash = require("lodash");
 
-const getUserId = async (req, res, next) => {
+const middwre =  {
+  async checkuser(req, res, next) {
+//   async(req, res, next){
     let token =   req.header('Authentication')
     if (Lodash.isNil(token)) return next();
     admin.auth().verifyIdToken(token)
@@ -16,6 +18,7 @@ const getUserId = async (req, res, next) => {
      return next()
    });
   }
-  
-export default { getUserId }
-  
+}
+
+
+export default middwre;
