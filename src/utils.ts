@@ -17,6 +17,7 @@ export function getUserId(ctx: Context) {
   throw new AuthError()
 }
 
+
 export class AuthError extends Error {
   constructor() {
     super('Not authorized')

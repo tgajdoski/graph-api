@@ -1,19 +1,6 @@
-
 const admin = require("firebase-admin");
 var serviceAccount = require('../qnary-dev.json');
 const Lodash = require("lodash");
-
-// function verifyToken(idToken){
-//   admin.auth().verifyIdToken(idToken)
-//   .then(function(decodedToken) {
-//     console.log('user' ,decodedToken);
-//     return decodedToken;
-//   }).catch(function(error) {
-//     console.log(error)
-//     return null;
-//   });
-
-// }
 
 const getUserId = async (req, res, next) => {
     let token =   req.header('Authentication')

@@ -1,6 +1,5 @@
 import { auth } from './Mutation/auth'
 
-// const { Query } = require('./Query/Query')
 const { approvals } = require('./Query/approvals')
 const { groups } = require('./Query/groups')
 const { organizations } = require('./Query/organizations')

@@ -3,6 +3,7 @@ var serviceAccount = require('../qnary-dev.json');
 const Lodash = require("lodash");
 
 const query = async ({id}, ctx, ref) => {
+    console.log('CONTEXT aaaa' , ctx.request.user);
    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
     if (!Lodash.isNil(id))
         ref = ref.child(`/${id}`)

@@ -264,6 +264,10 @@ mutation
 
 
 
+
+
+
+
 {
   
 notifications (platform: "ios")
@@ -290,10 +294,6 @@ notifications (platform: "ios")
     uid
   }
 }
-
-
-
-
 
 mutation
 
