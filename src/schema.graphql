@@ -12,6 +12,10 @@ type refreshPayload {
   refreshtoken: String! 
 }
 
+type responsePayload {
+  responsetext: String! 
+}
+
 type User {
   uid: String 
   displayName: String
@@ -60,6 +64,8 @@ type Query {
 type Mutation {
 
   login(email: String!, password: String!): AuthPayload!
+  passwordResetEmail(email: String!): responsePayload
+  passwordUpdate(email: String!, oid: String!, oldpass: String!, newpass: String!): responsePayload
   refreshtokens(refreshToken: String!): refreshPayload 
   createApproval(input: ApprovalCreateInput!): Approval
   updateApproval(input: ApprovalInput): Approval
