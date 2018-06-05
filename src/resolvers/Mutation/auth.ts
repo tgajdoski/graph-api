@@ -41,6 +41,7 @@ export const auth = {
         userwithoid = Object.assign({ oid: o }, userwithoid);
     });
     return {
+      id: user.uid,
       token: await user.getIdToken(true), // jwt.sign({ userId: 'aaa' }, process.env.APP_SECRET),
       refreshtoken: await user.refreshToken,
       user: userwithoid,

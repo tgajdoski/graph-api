@@ -1,6 +1,7 @@
 # import Post from "./generated/prisma.graphql"
 
 type AuthPayload {
+  id: String!
   token: String!
   refreshtoken: String! 
   user: User  
