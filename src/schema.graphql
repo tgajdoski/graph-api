@@ -9,6 +9,7 @@ type AuthPayload {
 }
 
 type refreshPayload {
+  id: String!
   token: String!
   refreshtoken: String! 
 }
@@ -38,65 +39,6 @@ type User_Organization {
   roles : Role
 }
 
-type Query {
-  approvals: [Approval]
-  userapprovals(oid: String!, uid: String!, status: String): [Approval]
-  approval(id: String!): Approval
-
-  devices: [Device]
-  device(id: String!): Device
-
-  connections: [Connection]
-  connection(id: String!): Connection
-
-  groups: [Group]
-  group(id: String!): Group
-
-  organizations: [Organization]
-  organization(id: String!): Organization
-
-  organization_user_approvals(oid: String! , uid: String!): [OrganizationUserApproval]
-  organization_user_approval(oid: String! , uid: String!, id: String!): OrganizationUserApproval
-
-  notifications(platform: String!): [Notification]
-  notification(platform: String! , id: String!): Notification
-}
-
-type Mutation {
-
-  login(email: String!, password: String!): AuthPayload!
-  passwordResetEmail(email: String!): responsePayload
-  passwordUpdate(email: String!, oid: String!, oldpass: String!, newpass: String!): responsePayload
-  refreshtokens(refreshToken: String!): refreshPayload 
-  createApproval(input: ApprovalCreateInput!): Approval
-  updateApproval(input: ApprovalInput): Approval
-  deleteApproval(input: ApprovalDeleteInput): Approval
-
-  createDevice(input: DeviceCreateInput!): Device
-  updateDevice(input: DeviceInput): Device
-  deleteDevice(input: DeviceDeleteInput): Device
-
-  createConnection(input: ConnectionCreateInput!): Connection
-  updateConnection(input: ConnectionInput): Connection
-  deleteConnection(input: ConnectionDeleteInput): Connection
-
-  createGroup(input: GroupCreateInput!): Group
-  updateGroup(input: GroupInput): Group
-  deleteGroup(input: GroupDeleteInput): Group
-
-  createOrganization(input: OrganizationCreateInput!): Organization
-  updateOrganization(input: OrganizationInput): Organization
-  deleteOrganization(input: OrganizationDeleteInput): Organization
-
-  createOrganizationUserApproval(input: OrganizationUserApprovalCreateInput!): OrganizationUserApproval
-  updateOrganizationUserApproval(input: OrganizationUserApprovalInput): OrganizationUserApproval
-  deleteOrganizationUserApporval(input: OrganizationUserApprovalDeleteInput): OrganizationUserApproval
-
-  createNotification(input: NotificationInput!): Notification
-  updateNotification(input: NotificationInput): Notification
-  deleteNotification(input: NotificationDeleteInput): Notification
-
-}
 
 type Settings {
   opt_in: Boolean
@@ -163,7 +105,40 @@ input OrganizationUserApprovalInput {
   source: String
   status: String
 }
+
 input OrganizationUserApprovalDeleteInput {
+  oid: String!
+  uid: String!
+  id: String!
+}
+
+
+input OrganizationUserConnectionCreateInput {
+  created_at: String
+  created_by:String
+  name: String
+  oid: String!
+  uid: String!
+  source: String!
+  source_type: String
+  type: String
+  updated_at: String
+}
+
+input OrganizationUserConnectionInput {
+  id: String!
+  created_at: String
+  created_by:String
+  name: String
+  oid: String!
+  uid: String!
+  source: String!
+  source_type: String
+  type: String
+  updated_at: String
+}
+
+input OrganizationUserConnectionDeleteInput {
   oid: String!
   uid: String!
   id: String!
@@ -538,4 +513,83 @@ input NotificationInput {
 input NotificationDeleteInput {
   platform: String!
   id: String!
+}
+
+type OrganizationUserConnection {
+  created_at: String
+  created_by:String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+}
+
+type Query {
+  approvals: [Approval]
+  userapprovals(oid: String!, uid: String!, status: String): [Approval]
+  approval(id: String!): Approval
+
+  devices: [Device]
+  device(id: String!): Device
+
+  connections: [Connection]
+  connection(id: String!): Connection
+
+  groups: [Group]
+  group(id: String!): Group
+
+  organizations: [Organization]
+  organization(id: String!): Organization
+
+  organization_user_approvals(oid: String! , uid: String!): [OrganizationUserApproval]
+  organization_user_approval(oid: String! , uid: String!, id: String!): OrganizationUserApproval
+
+  organization_user_connections(oid: String! , uid: String!): [OrganizationUserConnection]
+  organization_user_connection(oid: String! , uid: String!, id: String!): OrganizationUserConnection
+
+  notifications(platform: String!): [Notification]
+  notification(platform: String! , id: String!): Notification
+}
+
+type Mutation {
+
+  login(email: String!, password: String!): AuthPayload!
+  passwordResetEmail(email: String!): responsePayload
+  passwordUpdate(email: String!, oid: String!, oldpass: String!, newpass: String!): responsePayload
+  refreshtokens(refreshToken: String!): refreshPayload 
+  createApproval(input: ApprovalCreateInput!): Approval
+  updateApproval(input: ApprovalInput): Approval
+  deleteApproval(input: ApprovalDeleteInput): Approval
+
+  createDevice(input: DeviceCreateInput!): Device
+  updateDevice(input: DeviceInput): Device
+  deleteDevice(input: DeviceDeleteInput): Device
+
+  createConnection(input: ConnectionCreateInput!): Connection
+  updateConnection(input: ConnectionInput): Connection
+  deleteConnection(input: ConnectionDeleteInput): Connection
+
+  createGroup(input: GroupCreateInput!): Group
+  updateGroup(input: GroupInput): Group
+  deleteGroup(input: GroupDeleteInput): Group
+
+  createOrganization(input: OrganizationCreateInput!): Organization
+  updateOrganization(input: OrganizationInput): Organization
+  deleteOrganization(input: OrganizationDeleteInput): Organization
+
+  createOrganizationUserApproval(input: OrganizationUserApprovalCreateInput!): OrganizationUserApproval
+  updateOrganizationUserApproval(input: OrganizationUserApprovalInput): OrganizationUserApproval
+  deleteOrganizationUserApporval(input: OrganizationUserApprovalDeleteInput): OrganizationUserApproval
+
+  createOrganizationUserConnection(input: OrganizationUserConnectionCreateInput!): OrganizationUserConnection
+  updateOrganizationUserConnection(input: OrganizationUserConnectionInput): OrganizationUserConnection
+  deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
+
+  createNotification(input: NotificationInput!): Notification
+  updateNotification(input: NotificationInput): Notification
+  deleteNotification(input: NotificationDeleteInput): Notification
+
 }

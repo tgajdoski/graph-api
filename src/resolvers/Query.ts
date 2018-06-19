@@ -49,7 +49,10 @@ const update_mutation = async ({input}, ctx, ref) => {
 
 const delete_mutation = async ({input}, ctx, ref) => {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+    
+    
     const refPath = ref.child(input.id);
+    console.log('ref' , refPath.toString());
     return refPath.once('value')
         .then((snapshot) => {
             const obj = snapshot.val();

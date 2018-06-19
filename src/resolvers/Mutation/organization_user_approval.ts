@@ -15,7 +15,8 @@ export const organization_user_approvals_mutation = {
     return update_mutation({input}, ctx, orgRef);
   },
   deleteOrganizationUserApporval(_, { input }, ctx) {
-    const orgRef = orgsusrappRef.child(`${input.oid}/${input.uid}/${input.id}`);
+   // const orgRef = orgsusrappRef.child(`${input.oid}/${input.uid}/${input.id}`);
+    const orgRef = orgsusrappRef.child(`${input.oid}/${input.uid}`);
     return delete_mutation({input}, ctx, orgRef);
   },
 }

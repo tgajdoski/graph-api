@@ -378,3 +378,39 @@ login(email: "t.gajdoski@gmail.com" , password: "AAAA")
 
 
 
+
+
+mutation
+{
+	createOrganizationUserConnection( input: {
+  	created_at : "1508012080887",
+  	created_by : "JH6TcumpfnMDdor6c5Ksns917cq1",
+  	name : "Toni Gajdo",
+  	oid : "-KjOu2EQbfZb_sxUnwJV",
+  	source : "YAHOOO",
+  	uid : "JH6TcumpfnMDdor6c5Ksns917cq1"
+  })
+  {
+    uid
+    oid
+		name
+    created_at
+    created_by
+    source
+  }
+}
+
+
+
+mutation
+{
+	deleteOrganizationUserConnection( input: {
+     uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+    oid: "-KjOu2EQbfZb_sxUnwJV",
+    id: "-LFM8NdX6sBugsWy9J5Q"})
+  {
+    uid
+    oid
+    source
+  }
+}

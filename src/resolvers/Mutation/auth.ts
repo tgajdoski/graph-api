@@ -58,6 +58,7 @@ export const auth = {
     var res = await axios.post(refUrl);
     if (res.data)
       return {
+        id: res.data.access_token,
         token: res.data.access_token,
         refreshtoken: res.data.refresh_token
       };
