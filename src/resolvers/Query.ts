@@ -9,7 +9,7 @@ const query = async ({id}, ctx, ref) => {
     let value = await admin.database().ref(ref).once("value")
     const res = value.val();
     if (Lodash.isNil(id))
-        return Object.keys(res).map(o =>
+        return Object.keys(res).map(o => 
             Object.assign({
                 id: o
             }, res[o])
@@ -17,6 +17,13 @@ const query = async ({id}, ctx, ref) => {
     return Object.assign({ id: id }, res);
 };
 
+const querynokey = async ({id}, ctx, ref) => {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+     if (!Lodash.isNil(id))
+         ref = ref.child(`/${id}`)
+     let value = await admin.database().ref(ref).once("value")
+     return value.val();
+ };
 
 const create_mutation = async ({input}, ctx, ref) => {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
@@ -25,6 +32,23 @@ const create_mutation = async ({input}, ctx, ref) => {
             const obj = ref.push(input, () => {
                 resolve(Object.assign({
                     id: obj.key
+                }, input));
+            });
+        })
+    );
+};
+
+
+const create_mutation_key = async ({input}, ctx, ref) => {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+    let idto = input.id;
+    if (Lodash.isNil(input.token))
+        idto = input.token;
+    return (
+        new Promise((resolve) => {
+            const obj = ref.set(input, () => {
+                resolve(Object.assign({
+                    id: idto
                 }, input));
             });
         })
@@ -49,10 +73,7 @@ const update_mutation = async ({input}, ctx, ref) => {
 
 const delete_mutation = async ({input}, ctx, ref) => {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
-    
-    
     const refPath = ref.child(input.id);
-    console.log('ref' , refPath.toString());
     return refPath.once('value')
         .then((snapshot) => {
             const obj = snapshot.val();
@@ -67,7 +88,9 @@ const delete_mutation = async ({input}, ctx, ref) => {
 
 export {
     query,
+    querynokey,
     create_mutation,
+    create_mutation_key,
     update_mutation,
     delete_mutation
 }

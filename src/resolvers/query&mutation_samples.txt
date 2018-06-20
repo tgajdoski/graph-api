@@ -350,6 +350,60 @@ updateNotification(input:
 
 
 
+mutation
+{
+createNotification(input: 
+  {
+  app : "qnary",
+  created_at : "MMMMMMMMMM",
+  device : {
+    id: "55555555555",
+    available : true,
+    cordova : "4.5.4",
+    isVirtual : false,
+    manufacturer : "APPPLE",
+    model : "iPhone8,1",
+    platform : "iOS",
+    serial : "unknown",
+    uuid : "167ED895-3D6D-4D6E-9A95-AB46DDF3D6ED",
+    version : "11.3.1"
+  },
+  platform : "ios",
+  sms : {
+    countrycode : "us",
+    intlprefix : "1",
+    phonenumber : "(603) 219-9191"
+  },
+  status : 1,
+  token : "6032199191",
+  uid:  "JH6TcumpfnMDdor6c5Ksns917cq1"
+})
+  {
+    id
+   app
+    device{
+    available
+      cordova 
+      isVirtual
+       manufacturer
+      model
+      platform
+      serial
+      uuid
+      version
+    }
+    sms{
+      countrycode
+      intlprefix
+    }
+    status
+    token
+    uid
+  }
+}
+
+
+
 mutation{
 login(email: "t.gajdoski@gmail.com" , password: "AAAA")
   {
@@ -361,7 +415,7 @@ login(email: "t.gajdoski@gmail.com" , password: "AAAA")
       displayName
       email
     }
-    user_organizations
+    organizations
     {
       	oid
         account_type
@@ -401,7 +455,6 @@ mutation
 }
 
 
-
 mutation
 {
 	deleteOrganizationUserConnection( input: {
@@ -414,3 +467,280 @@ mutation
     source
   }
 }
+
+
+
+
+{
+  user_notifications(uid:"YyHa9jHzMVUFSpc5YLcBAcGJXKE2")
+  {
+    id
+    app
+    created_at
+    platform
+    status
+    token
+    uid
+  }
+}
+
+{
+	user_notification(uid: "YyHa9jHzMVUFSpc5YLcBAcGJXKE2",
+  id:"ce2ff3b7b30d5b4e7f3c5d3123a43483b1981df7ccdb9385b71e352a7423a6a0")
+  {
+    id
+    app
+    created_at
+    platform
+    status
+    
+  }
+}
+
+
+
+mutation{
+  createUserNotification(input:{
+    uid: "JH6TcumpfnMDdor6c5Ksns917cq1",
+   app: "qnary",
+   created_at: "1524772865384",
+  platform: "ios",
+  status: 1,
+  token: "TESTIRAMETOKENI" 
+  })
+    {
+    id
+    app
+    created_at
+    platform
+    status
+ 		uid
+    token
+  }
+}
+
+
+
+
+
+	mutation{
+  updateUserNotification	(input:{
+    id: "TESTIRAMETOKENI",
+    uid: "JH6TcumpfnMDdor6c5Ksns917cq1",
+   app: "qnary",
+   created_at: "1524772865384",
+  platform: "ios-MIOS",
+  status: 1,
+  token: "TESTIRAMETOKENI" 
+  })
+    {
+    app
+    created_at
+    platform
+    status
+ 		uid
+    token
+  }
+}
+
+	mutation{
+  deleteUserNotification	(input:{
+    id: "TESTIRAMETOKENI",
+    uid: "JH6TcumpfnMDdor6c5Ksns917cq1"
+  })
+    {
+    app
+    created_at
+    platform
+    status
+ 		uid
+    token
+  }
+}
+
+
+
+{
+	organization_users(oid:"-KjOu2EQbfZb_sxUnwJV")
+  {
+    account_type
+    email
+    profile {
+      name
+      email
+      firstname
+      slug
+    }
+    roles {
+      admin
+      freelancer
+      user
+    }
+    settings{
+      locale
+      mobile{
+        onboarded
+      }
+      notifications{
+        push{
+          off
+        }
+      }
+      
+    }
+  }
+}
+
+
+{
+	organization_user(oid:"-KjOu2EQbfZb_sxUnwJV", uid:"JH6TcumpfnMDdor6c5Ksns917cq1")
+  {
+    account_type
+    email
+    profile {
+      name
+      email
+      firstname
+      slug
+    }
+    roles {
+      admin
+      freelancer
+      user
+    }
+    settings{
+      locale
+      mobile{
+        onboarded
+      }
+      notifications{
+        push{
+          off
+        }
+      }
+      
+    }
+  }
+}
+
+
+
+
+	mutation{
+  createOrganizationUser(input:{
+    id:"1111111111111111111111"
+		oid:"-KjOu2EQbfZb_sxUnwJV"
+		account_type : "MANAAAAA",
+    email: "cvassca@com.mk",
+    profile: {
+        email: "t.gajdoski@gmail.com",
+        firstname: null,
+        name: "Toni Gajdoski"
+      },
+      roles: {
+        admin: true,
+        freelancer: true,
+        user: true
+      },
+      settings: {
+        locale: "en",
+        mobile: {
+          onboarded: "1529487101664"
+        },
+        notifications: {
+          push: {
+            off: true
+          }
+        }
+      }
+  })
+    {
+account_type
+      email
+      profile{
+        email
+        firstname
+        name
+      }
+      roles{
+        admin
+        freelancer
+        user
+      }
+      settings{
+        
+        locale
+        mobile{
+          onboarded
+        }
+        notifications{
+          push{
+            off
+          }
+        }
+      }
+  }
+}
+
+
+
+
+
+	mutation{
+  updateOrganizationUser (input:{
+    id:"1111111111111111111111"
+		oid:"-KjOu2EQbfZb_sxUnwJV"
+		account_type : "ASDASDASD",
+    email: "LALALALAL@com.mk",
+    profile: {
+        email: "t.gajdoski@gmail.com",
+        firstname: null,
+        name: "Toni Gajdoski"
+      },
+      roles: {
+        admin: true,
+        freelancer: true,
+        user: true
+      },
+      settings: {
+        locale: "en",
+        mobile: {
+          onboarded: "1529487101664"
+        },
+        notifications: {
+          push: {
+            off: true
+          }
+        }
+      }
+  })
+    {
+account_type
+      email
+      profile{
+        email
+        firstname
+        name
+      }
+      roles{
+        admin
+        freelancer
+        user
+      }
+      settings{
+        
+        locale
+        mobile{
+          onboarded
+        }
+        notifications{
+          push{
+            off
+          }
+        }
+      }
+  }
+}
+
+
+

@@ -32,6 +32,14 @@ type Role{
   user: Boolean
 }
 
+
+input Role_input{
+  admin: Boolean
+  freelancer: Boolean
+  user: Boolean
+}
+
+
 type User_Organization {
   oid: String!
   account_type: String
@@ -211,6 +219,7 @@ type Profile {
   name: String
   raw: ProfileRaw
   url: String
+  slug: String
 }
 
 type Time {
@@ -497,6 +506,66 @@ type Notification {
   uid : String
 }
 
+type OrganizationUser {
+
+  account_type : String
+  email : String
+  profile: Profile
+  roles : Role
+  settings: UserSettings
+}
+
+input OrganizationUserInput {
+  id: String
+  oid: String
+  account_type : String
+  email : String
+  profile: Profile_input
+  roles : Role_input
+  settings: UserSettings_input
+}
+
+input OrganizationUserDeleteInput {
+  oid: String!
+  id: String!
+}
+
+type Push {
+  off: Boolean
+}
+
+type UserSettingsNotification{
+  push: Push
+}
+
+type UserMobile {
+  onboarded : String
+}
+input UserMobile_input {
+  onboarded : String
+}
+
+input Push_input {
+  off: Boolean
+}
+
+input UserSettingsNotification_input{
+  push: Push_input
+}
+
+type UserSettings {
+    locale : String
+    mobile : UserMobile
+    notifications: UserSettingsNotification
+  }
+
+input UserSettings_input {
+    locale : String
+    mobile : UserMobile_input
+    notifications: UserSettingsNotification_input
+  }
+
+
 
 input NotificationInput {
   app : String
@@ -509,6 +578,32 @@ input NotificationInput {
   uid : String
 }
 
+type UserNotification {
+  id: String!
+  app : String
+  created_at : String
+  platform :String
+  status : Int
+  token : String
+  uid : String
+}
+
+input UserNotificationInput {
+  id: String!
+  oid: String!
+  app : String
+  created_at : String
+  platform :String
+  status : Int
+  token : String
+  uid : String
+}
+
+
+input UserNotificationDeleteInput {
+  uid: String!
+  id: String!
+}
 
 input NotificationDeleteInput {
   platform: String!
@@ -552,6 +647,12 @@ type Query {
 
   notifications(platform: String!): [Notification]
   notification(platform: String! , id: String!): Notification
+
+  user_notifications(uid: String!): [UserNotification]
+  user_notification(uid: String! , id: String!): UserNotification
+
+  organization_users(oid: String! ): [OrganizationUser]
+  organization_user(oid: String! , uid: String!): OrganizationUser
 }
 
 type Mutation {
@@ -591,5 +692,13 @@ type Mutation {
   createNotification(input: NotificationInput!): Notification
   updateNotification(input: NotificationInput): Notification
   deleteNotification(input: NotificationDeleteInput): Notification
+
+  createUserNotification(input: UserNotificationInput!): UserNotification
+  updateUserNotification(input: UserNotificationInput): UserNotification
+  deleteUserNotification(input: UserNotificationDeleteInput): UserNotification
+
+  createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
+  updateOrganizationUser(input: OrganizationUserInput): OrganizationUser
+  deleteOrganizationUser(input: OrganizationUserDeleteInput): OrganizationUser
 
 }
