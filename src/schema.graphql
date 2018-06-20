@@ -122,7 +122,6 @@ input OrganizationUserApprovalDeleteInput {
 
 
 input OrganizationUserConnectionCreateInput {
-  created_at: String
   created_by:String
   name: String
   oid: String!
@@ -134,8 +133,6 @@ input OrganizationUserConnectionCreateInput {
 }
 
 input OrganizationUserConnectionInput {
-  id: String!
-  created_at: String
   created_by:String
   name: String
   oid: String!
@@ -611,6 +608,7 @@ input NotificationDeleteInput {
 }
 
 type OrganizationUserConnection {
+  id: String
   created_at: String
   created_by:String
   name: String

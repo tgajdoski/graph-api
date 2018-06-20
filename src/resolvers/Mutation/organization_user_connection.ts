@@ -7,6 +7,10 @@ const orgsusrconnRef = admin.database().ref('organization_user_connections');
 
 export const organization_user_connections_mutation = {
   createOrganizationUserConnection(_, { input }, ctx) {
+    console.log('input', input);
+    input["created_at"] = admin.database.ServerValue.TIMESTAMP;
+
+    console.log('inputAFTER', input);
     const orgRef = orgsusrconnRef.child(`${input.oid}/${input.uid}`);
     return create_mutation({input}, ctx, orgRef);
   },
