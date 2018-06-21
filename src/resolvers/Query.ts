@@ -7,7 +7,12 @@ const query = async ({id}, ctx, ref) => {
     if (!Lodash.isNil(id))
         ref = ref.child(`/${id}`)
     let value = await admin.database().ref(ref).once("value")
+
+
     const res = value.val();
+    if (Lodash.isNil(res))
+        return null;
+
     if (Lodash.isNil(id))
         return Object.keys(res).map(o => 
             Object.assign({
