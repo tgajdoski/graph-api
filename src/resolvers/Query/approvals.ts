@@ -1,6 +1,6 @@
 const { getUserId, ApprovalStatus, PublishStatu } = require("../../utils");
 const admin = require("firebase-admin");
-const { query } = require("../query");
+import { query } from '../query-helper';
 const functions = require("firebase-functions");
 const Lodash = require("lodash");
 var serviceAccount = require("../../qnary-dev.json");
@@ -29,8 +29,8 @@ function isPending(approval) {
 }
 
 export const approvals = {
-  approvals(_, {}, ctx) {
-    return query({}, ctx, approvalsRef);
+  approvals(_, {id}, ctx) {
+    return query({id}, ctx, approvalsRef);
   },
   approval(_, { id }, ctx) {
     return query({ id }, ctx, approvalsRef);

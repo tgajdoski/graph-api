@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const { query } = require("../query");
+const { query } = require("../query-helper");
 const functions = require("firebase-functions");
 const Lodash = require("lodash");
 

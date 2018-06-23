@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const  { query } = require('../query');
+const  { query } = require('../query-helper');
 const Lodash = require("lodash");
 const usrnotifRef = admin.database().ref('user_notifications');
 

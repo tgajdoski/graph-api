@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
-const  { query } = require('../query');
+const  { query } = require('../query-helper');
 const Lodash = require("lodash");
 var serviceAccount = require("../../qnary-dev.json");
 

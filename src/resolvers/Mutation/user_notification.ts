@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const { create_mutation, create_mutation_key, update_mutation, delete_mutation } = require("../query");
+const { create_mutation, create_mutation_key, update_mutation, delete_mutation } = require("../query-helper");
 
 const usrnotifRef = admin.database().ref('user_notifications');
 

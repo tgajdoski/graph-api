@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const Lodash = require('lodash');
-const { create_mutation_key, update_mutation, delete_mutation } = require("../query");
+const { create_mutation_key, update_mutation, delete_mutation } = require("../query-helper");
 
 const orgsusrRef = admin.database().ref('organization_users');
 

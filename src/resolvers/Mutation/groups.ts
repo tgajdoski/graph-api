@@ -5,7 +5,7 @@ const {
   create_mutation,
   update_mutation,
   delete_mutation
-} = require("../query");
+} = require("../query-helper");
 
 const groupsRef = admin.database().ref("groups");
 

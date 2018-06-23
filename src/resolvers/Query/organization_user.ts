@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const  { query, querynokey } = require('../query');
+const  { query, querynokey } = require('../query-helper');
 
 const orgsusrRef = admin.database().ref('organization_users');
 
