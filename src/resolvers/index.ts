@@ -21,6 +21,7 @@ const { notifications_mutation } = require('./Mutation/notifications')
 const { organization_user_connections_mutation } = require('./Mutation/organization_user_connection')
 const { user_notifications_mutation } = require('./Mutation/user_notification')
 const { organization_users_mutation } = require('./Mutation/organization_user')
+const { allownotifications_mutation } = require('./Mutation/allownotifications')
 
 export default {
   Query: {
@@ -46,7 +47,8 @@ export default {
     ...connections_mutation,
     ...notifications_mutation,
     ...user_notifications_mutation,
-    ...organization_users_mutation
+    ...organization_users_mutation,
+    ...allownotifications_mutation
   }
   // Subscription,
   // AuthPayload,

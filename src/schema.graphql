@@ -587,7 +587,6 @@ type UserNotification {
 
 input UserNotificationInput {
   id: String!
-  oid: String!
   app : String
   created_at : String
   platform :String
@@ -606,6 +605,7 @@ input NotificationDeleteInput {
   platform: String!
   id: String!
 }
+
 
 type OrganizationUserConnection {
   id: String
@@ -694,6 +694,8 @@ type Mutation {
   createUserNotification(input: UserNotificationInput!): UserNotification
   updateUserNotification(input: UserNotificationInput): UserNotification
   deleteUserNotification(input: UserNotificationDeleteInput): UserNotification
+
+  allowNotification(input: NotificationInput!): Boolean
 
   createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
   updateOrganizationUser(input: OrganizationUserInput): OrganizationUser
