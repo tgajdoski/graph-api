@@ -695,7 +695,7 @@ type Mutation {
   updateUserNotification(input: UserNotificationInput): UserNotification
   deleteUserNotification(input: UserNotificationDeleteInput): UserNotification
 
-  allowNotification(input: NotificationInput!): Boolean
+  allowNotification(input: NotificationInput!, oid: String!): Boolean
 
   createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
   updateOrganizationUser(input: OrganizationUserInput): OrganizationUser
