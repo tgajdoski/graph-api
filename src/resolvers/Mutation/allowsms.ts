@@ -4,17 +4,25 @@ const Lodash = require('lodash');
 
 const rootRef = admin.database().ref();
 
-export const allownotifications_mutation = {
+export const allowsms_mutation = {
 
-   async allowNotification(_, {input, oid }, ctx) {
+   async allowSMS(_, {input, oid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
    const userNotif =  Lodash.pick(input, ['id',  'app', 'platform', 'status', 'token', 'uid']);
    userNotif['created_at'] =  admin.database.ServerValue.TIMESTAMP;
  
+   var sms_org_user = {
+    "platform": input.platform,
+    "phone_details" : input.sms,
+    "push": {
+      "off": false
+    }
+  }
+
     let updates = {
-      [`notifications/${input.platform}/${input.device.id}`]: input,
-      [`/user_notifications/${input.uid}/${input.token}`]: userNotif,
-      [`/organization_users/${oid}/${input.uid}/settings/notifications/push/off`]: false,
+      [`notifications/${input.platform}/${input.sms.formatedNumber}`]: input,
+      [`/user_notifications/${input.uid}/${input.sms.formatedNumber}`]: userNotif,
+      [`/organization_users/${oid}/${input.uid}/settings/sms`]: sms_org_user,
     };
     try{
       let results = await rootRef.update(updates);
@@ -26,10 +34,10 @@ export const allownotifications_mutation = {
       throw error
     }
   },
-  async checkAllowNotification(_, {uid, oid }, ctx) {
+  async checkAllowSMS(_, {uid, oid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
     let updates = {
-      [`/organization_users/${oid}/${uid}/settings/notifications/push/off`]: false,
+      [`/organization_users/${oid}/${uid}/settings/sms/push/off`]: false,
     };
     try{
       let results = await rootRef.update(updates);
@@ -41,11 +49,11 @@ export const allownotifications_mutation = {
       throw error
     }
   },
-  async checkDissallowNotification(_, {uid, oid }, ctx) {
+  async checkDissallowSMS(_, {uid, oid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
   
     let updates = {
-      [`/organization_users/${oid}/${uid}/settings/notifications/push/off`]: true,
+      [`/organization_users/${oid}/${uid}/settings/sms/push/off`]: true,
     };
     try{
       let results = await rootRef.update(updates);

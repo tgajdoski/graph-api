@@ -482,12 +482,14 @@ type Sms {
   countrycode : String
   intlprefix : String
   phonenumber :String
+  formatedNumber: String
 }
 
 input SmsInput {
   countrycode : String
   intlprefix : String
   phonenumber :String
+  formatedNumber: String
 }
 
 
@@ -698,8 +700,12 @@ type Mutation {
 
   allowNotification(input: NotificationInput!, oid: String!): Boolean
   checkAllowNotification(uid: String!, oid: String!): Boolean
-  checkDissAllowNotification(uid: String!, oid: String!): Boolean
+  checkDissallowNotification(uid: String!, oid: String!): Boolean
 
+
+  allowSMS(input: NotificationInput!, oid: String!): Boolean
+  checkAllowSMS(uid: String!, oid: String!): Boolean
+  checkDissallowSMS(uid: String!, oid: String!): Boolean
 
   createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
   updateOrganizationUser(input: OrganizationUserInput): OrganizationUser
