@@ -25,6 +25,13 @@ type User {
   oid: String
 }
 
+input UserInput {
+  uid: String 
+  displayName: String
+  email: String
+  oid: String
+}
+
 
 type Role{
   admin: Boolean
@@ -549,6 +556,22 @@ input UserSettingsNotification_input{
   push: Push_input
 }
 
+type EventType {
+  oid: String!
+  uid: String
+  user: User
+  profile: Profile
+  connection: Connection
+}
+
+input sendSocialConnectCommandEventInputType {
+  oid: String!
+  uid: String
+  user: UserInput
+  profile: Profile_input
+  connection: ConnectionInput
+}
+
 type UserSettings {
     locale : String
     mobile : UserMobile
@@ -687,7 +710,11 @@ type Mutation {
   deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
 
   createBoargingConnection(input: ConnectionCreateInput!): Connection
+  updateBoargingConnection(input: ConnectionCreateInput!): Boolean
+  deleteBoargingConnection(input: ConnectionCreateInput!): Boolean
+  completeOnboarding(oid: String!, uid: String!): Boolean
 
+  sendSocialConnectCommandEvent(input: sendSocialConnectCommandEventInputType) : EventType
 
   createNotification(input: NotificationInput!): Notification
   updateNotification(input: NotificationInput): Notification
@@ -706,6 +733,7 @@ type Mutation {
   allowsms(input: NotificationInput!, oid: String!): Boolean
   checkallowsms(uid: String!, oid: String!): Boolean
   checkdissallowsms(uid: String!, oid: String!): Boolean
+  
 
   createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
   updateOrganizationUser(input: OrganizationUserInput): OrganizationUser

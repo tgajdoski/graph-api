@@ -33,5 +33,22 @@ export const boarding_connections_mutation = {
   deleteBoargingConnection(_, { input }, ctx) {
     return true;
    },
+  async completeOnboarding(_, { oid, uid }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`)
+    var onboardtime =  admin.database.ServerValue.TIMESTAMP;
+   
+     let updates = {
+       [`/organization_users/${oid}/${uid}/settings/mobile`]: {'onboarded': onboardtime},
+     };
+     try{
+       let results = await rootRef.update(updates);
+        return true;
+     }
+     catch(error)
+     {
+       console.log('error :' , error );
+       throw error
+     }
+   },
   }
 

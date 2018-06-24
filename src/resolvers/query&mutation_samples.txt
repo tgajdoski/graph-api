@@ -744,3 +744,92 @@ account_type
 
 
 
+
+
+
+
+
+
+
+mutation
+{
+ sendevents_mutation(input:{
+  oid:"-KjOu2EQbfZb_sxUnwJV",
+  uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+  user:{
+    uid: "JH6TcumpfnMDdor6c5Ksns917cq1",
+    displayName: "Toni Gajdoski",
+    email: "t.gajdoski",
+    oid: "-KjOu2EQbfZb_sxUnwJV"
+  },
+  profile :
+  {
+    firstname: "Toni", 
+		lastname: "Gajdoski",
+		name: "Toni Gajdoski",
+  },
+  connection:
+  {
+    id: "-LFhGI_TjvyeTJvcxmyb",
+    auth:{
+    	firebase_id: "-LFhHEp02YV-ZAPWqGxj",
+    	provider:  "linkedin2",
+      access_token:"asdfasefq34qrewfa2-efwef-23-sdfsd-213e-dfsdf-2323423",
+      created_at :"1523049516716",
+      expires : "1529999999999",
+      expires_in : "5183999"
+    },
+    created_by: "Fpg2VfrSURcUPpQOYNV0hRDm0my1",
+    ignore: false,
+    name: "Admir Durmishi",
+    oid: "-KjOu2EQbfZb_sxUnwJV",
+    profile: {
+      firstname: "Toni", 
+      lastname: "Gajdoski"
+      name: "Toni Gajdoski",
+    },
+  	source:"linkedin",
+    source_type: "linkedin_profile",
+    status: "1",
+    type:"profile"
+  }
+}) 
+  
+  {
+    oid
+    uid
+    user{
+      uid
+      displayName
+    }
+    profile
+    {
+      firstname
+      name
+    }
+    connection{
+      id
+      auth{
+        firebase_id
+        provider
+        access_token
+      }
+      
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
