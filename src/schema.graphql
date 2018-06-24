@@ -129,7 +129,6 @@ input OrganizationUserConnectionCreateInput {
   source: String!
   source_type: String
   type: String
-  updated_at: String
 }
 
 input OrganizationUserConnectionInput {
@@ -140,7 +139,6 @@ input OrganizationUserConnectionInput {
   source: String!
   source_type: String
   type: String
-  updated_at: String
 }
 
 input OrganizationUserConnectionDeleteInput {
@@ -415,7 +413,6 @@ input ConnectionPublishInput {
 
 input ConnectionCreateInput {
   auth: auth_input
-  created_at: String
   created_by: String
   ignore: Boolean
   name: String
@@ -669,10 +666,6 @@ type Mutation {
   updateDevice(input: DeviceInput): Device
   deleteDevice(input: DeviceDeleteInput): Device
 
-  createConnection(input: ConnectionCreateInput!): Connection
-  updateConnection(input: ConnectionInput): Connection
-  deleteConnection(input: ConnectionDeleteInput): Connection
-
   createGroup(input: GroupCreateInput!): Group
   updateGroup(input: GroupInput): Group
   deleteGroup(input: GroupDeleteInput): Group
@@ -685,9 +678,16 @@ type Mutation {
   updateOrganizationUserApproval(input: OrganizationUserApprovalInput): OrganizationUserApproval
   deleteOrganizationUserApporval(input: OrganizationUserApprovalDeleteInput): OrganizationUserApproval
 
+  createConnection(input: ConnectionCreateInput!): Connection
+  updateConnection(input: ConnectionInput): Connection
+  deleteConnection(input: ConnectionDeleteInput): Connection
+
   createOrganizationUserConnection(input: OrganizationUserConnectionCreateInput!): OrganizationUserConnection
   updateOrganizationUserConnection(input: OrganizationUserConnectionInput): OrganizationUserConnection
   deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
+
+  createBoargingConnection(input: ConnectionCreateInput!): Connection
+
 
   createNotification(input: NotificationInput!): Notification
   updateNotification(input: NotificationInput): Notification
@@ -703,9 +703,9 @@ type Mutation {
   checkDissallowNotification(uid: String!, oid: String!): Boolean
 
 
-  allowSMS(input: NotificationInput!, oid: String!): Boolean
-  checkAllowSMS(uid: String!, oid: String!): Boolean
-  checkDissallowSMS(uid: String!, oid: String!): Boolean
+  allowsms(input: NotificationInput!, oid: String!): Boolean
+  checkallowsms(uid: String!, oid: String!): Boolean
+  checkdissallowsms(uid: String!, oid: String!): Boolean
 
   createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
   updateOrganizationUser(input: OrganizationUserInput): OrganizationUser

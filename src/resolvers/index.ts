@@ -22,7 +22,7 @@ const { organization_user_connections_mutation } = require('./Mutation/organizat
 const { user_notifications_mutation } = require('./Mutation/user_notification')
 const { organization_users_mutation } = require('./Mutation/organization_user')
 const { allownotifications_mutation } = require('./Mutation/allownotifications')
-const { allowsms_mutation } = require('./Mutation/allowSMS')
+const { allowsms_mutation } = require('./Mutation/allowsms')
 
 export default {
   Query: {
