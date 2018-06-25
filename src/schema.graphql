@@ -441,6 +441,7 @@ input ConnectionInput {
   created_by: String
   ignore: Boolean
   name: String
+  origin: String
   oid: String
   profile: Profile_input
   publish: ConnectionPublishInput
@@ -713,9 +714,10 @@ type Mutation {
   updateBoargingConnection(input: ConnectionCreateInput!): Boolean
   deleteBoargingConnection(input: ConnectionCreateInput!): Boolean
   completeOnboarding(oid: String!, uid: String!): Boolean
+  createOrUpdateConnection(input: ConnectionInput!) : String
 
-  sendSocialConnectCommandEvent(input: sendSocialConnectCommandEventInputType) : EventType
-
+  sendSocialConnectCommandEvent(input: sendSocialConnectCommandEventInputType) : Boolean
+ 
   createNotification(input: NotificationInput!): Notification
   updateNotification(input: NotificationInput): Notification
   deleteNotification(input: NotificationDeleteInput): Notification

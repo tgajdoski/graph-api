@@ -17,7 +17,10 @@ export const sendevents_mutation = {
 
     return eventService["sendSocialConnectCommandEvent"](msg).then(function() {
       console.log('sendSocialConnectCommandEvent', arguments);
-      return { oid, uid, user, profile, connection };
+      return true;
+    } , (error) => {
+      console.log('EROOR ', error);
+      throw error;
     });
 
   },
