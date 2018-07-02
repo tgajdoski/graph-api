@@ -78,43 +78,34 @@ export const auth = {
   // we need user - or uid so we can catch the user
   async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
     try {
-      const login = await auth.login(parent, {email, password: oldpass }, ctx, info);
+      await auth.login(parent, {email, password: oldpass }, ctx, info);
       const user =  firebase.auth().currentUser;
-      let responsetext = "Password updated successfully!"
       try {
-        const updateuser = await user.updatePassword(newpass);
-        const updateTime = await admin.database().ref(`organization_users/${oid}/${user.uid}/settings/mobile`).update({
+        await user.updatePassword(newpass);
+        await admin.database().ref(`organization_users/${oid}/${user.uid}/settings/mobile`).update({
           'password_last_changed': firebase.database.ServerValue.TIMESTAMP
         });
-        return {responsetext: responsetext};
+        return {
+          isSuccess: true
+        };
       }
       catch (error) {
+        let err = error.code ? { code: error.code, message: error.message} : { code: "GENERIC_ERROR", message: error}
         console.error(`login failed: ${error}`);
-        return {responsetext: `login failed: ${error}`};
+        return {
+          isSuccess: false,
+          error : err
+        } 
       }
     }
     catch (error) {
-      console.error(`login failed: ${error}`);
-      return {responsetext: `login failed: ${error}`};
+      console.error(`login failed AAA: ${error}`);
+      return {
+        isSuccess: false,
+        error : { code: "LOGIN_FAILED", message: error.message }
+      } 
      }
-   
-
-         
-    // const text = user.updatePassword(newpass).then(function() {
-    //    admin.database().ref(`organization_users/${oid}/${user.uid}/settings/mobile`).update({
-    //     'password_last_changed': firebase.database.ServerValue.TIMESTAMP
-    //   }).then(function(res) {
-    //     return {responsetext: responsetext};
-    //   }).catch(function(error) {
-    //   // An error happened.
-    //     responsetext  = `error: cant send email - ${error}`;
-    //   });
-    //   return {responsetext: responsetext};
-    // }).catch(function(error) {
-    // // An error happened.
-    //   responsetext  = `error: cant change email - ${error}`;
-    //   return {responsetext: responsetext};
-    // });
+  
   },
 
 };

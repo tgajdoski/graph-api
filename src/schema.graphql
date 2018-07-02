@@ -14,8 +14,14 @@ type refreshPayload {
   refreshtoken: String! 
 }
 
+type ErrorType {
+  code: String
+  message: String
+}
+
 type responsePayload {
-  responsetext: String! 
+  isSuccess: Boolean,
+  error: ErrorType
 }
 
 type User {
