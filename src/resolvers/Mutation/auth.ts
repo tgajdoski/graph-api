@@ -66,17 +66,22 @@ export const auth = {
   },
   async passwordResetEmail(parent, { email }, ctx, info) {
     let auth = firebase.auth();
-    let responsetext = "Password reset email sent successfully!"
-    auth.sendPasswordResetEmail(email).then(function() {
-      console.log("Email sent.");
+    let response = await auth.sendPasswordResetEmail(email).then(function() {
+      return {
+        isSuccess: true,
+        error : null
+      };
      }).catch(function(error) {
        // An error happened.
-       responsetext  = `error: cant send email - ${error.code.toString()}`;
-     });
-      return {responsetext: responsetext};
+       let err = error.code ? { code: error.code, message: error.message} : { code: "GENERIC_ERROR", message: error}
+       return {
+        isSuccess: false,
+        error : err
+      } 
+    });
+    return response;
   },
-  // we need user - or uid so we can catch the user
-  async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
+    async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
     try {
       await auth.login(parent, {email, password: oldpass }, ctx, info);
       const user =  firebase.auth().currentUser;
