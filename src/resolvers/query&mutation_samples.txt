@@ -868,16 +868,22 @@ mutation
 
 mutation
 {
-  createOrUpdateConnection(input:{
-
-    auth:{
+  createOrUpdateConnection(input: {
+    id : "-LG_6MjVhWsu88oDt5KZ"
+    auth: {
     	firebase_id: "-LFhHEp02YV-ZAPWqGxj",
     	provider:  "linkedin2",
     },
-
+		user: {
+      uid: "JH6TcumpfnMDdor6c5Ksns917cq1", 
+      displayName: "GAJDO"
+      email: "t.gajdoski@gmail.com"
+      oid: "-KjOu2EQbfZb_sxUnwJV"
+    }
     created_by: "Fpg2VfrSURcUPpQOYNV0hRDm0my1",
     ignore: false,
-    name: "Admir Durmishi",
+    origin:  "fullcontact",
+    name: "TONI GAJDO",
     oid: "-KjOu2EQbfZb_sxUnwJV",
     uid:"JH6TcumpfnMDdor6c5Ksns917cq1"
     profile: {
@@ -892,21 +898,62 @@ mutation
   })
 
 }
+
+
+
+
+    mutation
+    {
+      createOrUpdateConnection(input: {
+        auth: {
+          firebase_id: "-LFhHEp02YV-ZAPWqGxj",
+          provider:  "linkedin2",
+        },
+        user: {
+          uid: "JH6TcumpfnMDdor6c5Ksns917cq1", 
+          displayName: "GAJDO"
+          email: "t.gajdoski@gmail.com"
+          oid: "-KjOu2EQbfZb_sxUnwJV"
+        }
+        created_by: "Fpg2VfrSURcUPpQOYNV0hRDm0my1",
+        ignore: false,
+        name: "TONI GAJDO",
+        oid: "-KjOu2EQbfZb_sxUnwJV",
+        uid:"JH6TcumpfnMDdor6c5Ksns917cq1"
+        profile: {
+          firstname: "Toni", 
+          lastname: "Gajdoski"
+          name: "Toni Gajdoski",
+        },
+        source:"linkedin",
+        source_type: "linkedin_profile",
+        status: "1",
+        type:"profile"  
+      })
+
+    }
+
+
+
+
 
 mutation
 {
-  createOrUpdateConnection(input:{
-    origin: "fullcontact",
-    id: "STAVIGOCONNECTION ID_TO",
-
-    auth:{
+  disconnectConnection(input: {
+    id: "-LG_C4vyFbH24OneKTnK"
+    auth: {
     	firebase_id: "-LFhHEp02YV-ZAPWqGxj",
     	provider:  "linkedin2",
     },
-
-    created_by: "Fpg2VfrSURcUPpQOYNV0hRDm0my1",
+		user: {
+      uid: "JH6TcumpfnMDdor6c5Ksns917cq1", 
+      displayName: "GAJDO"
+      email: "t.gajdoski@gmail.com"
+      oid: "-KjOu2EQbfZb_sxUnwJV"
+    }
+    created_by: "JH6TcumpfnMDdor6c5Ksns917cq1",
     ignore: false,
-    name: "Admir Durmishi",
+    name: "TONI GAJDO",
     oid: "-KjOu2EQbfZb_sxUnwJV",
     uid:"JH6TcumpfnMDdor6c5Ksns917cq1"
     profile: {
@@ -922,4 +969,21 @@ mutation
 
 }
 
+
+
+
+
+mutation
+{
+  completeOnboarding(oid:"-KjOu2EQbfZb_sxUnwJV", uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
+  
+}
+
+
+
+mutation
+{
+  clearDeviceCache(oid:"-KjOu2EQbfZb_sxUnwJV", uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
+  
+}
 

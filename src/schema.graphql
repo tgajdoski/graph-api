@@ -400,6 +400,14 @@ input Profile_input {
   url: String
 }
 
+input UserInput {
+  uid: String 
+  displayName: String
+  email: String
+  oid: String
+}
+
+
 input TimeInput {
   daypart: String
   hour: String
@@ -430,6 +438,7 @@ input ConnectionCreateInput {
   ignore: Boolean
   name: String
   oid: String
+  user: UserInput
   profile: Profile_input
   publish: ConnectionPublishInput
   source: String
@@ -449,6 +458,7 @@ input ConnectionInput {
   name: String
   origin: String
   oid: String
+  user: UserInput
   profile: Profile_input
   publish: ConnectionPublishInput
   source: String
@@ -716,14 +726,14 @@ type Mutation {
   updateOrganizationUserConnection(input: OrganizationUserConnectionInput): OrganizationUserConnection
   deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
 
-  createBoargingConnection(input: ConnectionCreateInput!): Connection
-  updateBoargingConnection(input: ConnectionCreateInput!): Boolean
-  deleteBoargingConnection(input: ConnectionCreateInput!): Boolean
-  completeOnboarding(oid: String!, uid: String!): Boolean
-  createOrUpdateConnection(input: ConnectionInput!) : String
 
-  sendSocialConnectCommandEvent(input: sendSocialConnectCommandEventInputType) : Boolean
- 
+  disconnectConnection(input: ConnectionInput!): Boolean
+  completeOnboarding(oid: String!, uid: String!): Boolean
+  clearDeviceCache(oid: String!, uid: String!): Boolean
+  createOrUpdateConnection(input: ConnectionInput!) : Boolean
+
+
+
   createNotification(input: NotificationInput!): Notification
   updateNotification(input: NotificationInput): Notification
   deleteNotification(input: NotificationDeleteInput): Notification
