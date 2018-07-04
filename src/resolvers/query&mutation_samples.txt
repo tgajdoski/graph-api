@@ -934,9 +934,6 @@ mutation
     }
 
 
-
-
-
 mutation
 {
   disconnectConnection(input: {
@@ -966,17 +963,11 @@ mutation
     status: "1",
     type:"profile"  
   })
-
 }
-
-
-
-
 
 mutation
 {
   completeOnboarding(oid:"-KjOu2EQbfZb_sxUnwJV", uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
-  
 }
 
 
@@ -984,6 +975,5 @@ mutation
 mutation
 {
   clearDeviceCache(oid:"-KjOu2EQbfZb_sxUnwJV", uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
-  
 }
 
