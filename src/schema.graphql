@@ -746,7 +746,7 @@ type Mutation {
   deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
 
 
-  disconnectConnection(input: ConnectionInput!): Boolean
+  disconnectConnection(input: ConnOrgUserConn!): Boolean
   completeOnboarding(oid: String!, uid: String!): Boolean
   clearDeviceCache(oid: String!, uid: String!): Boolean
   createOrUpdateConnection(input: ConnectionInput!) : Boolean
