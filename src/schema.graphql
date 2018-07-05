@@ -284,6 +284,7 @@ input ConnOrgUserConnInput {
   type: String
   updated_at: String
   auth: auth_input
+  user: UserInput
   ignore: Boolean
   profile: Profile_input
   publish: ConnectionPublishInput
