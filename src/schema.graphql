@@ -272,6 +272,25 @@ type Connection {
   version: String
 }
 
+input ConnOrgUserConnInput {
+  id: String
+  created_at: String
+  created_by:String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth
+  ignore: Boolean
+  profile: Profile
+  publish: ConnectionPublish
+  status: String
+  version: String
+}
+
 type ConnOrgUserConn {
   id: String
   created_at: String
@@ -746,7 +765,7 @@ type Mutation {
   deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
 
 
-  disconnectConnection(input: ConnOrgUserConn!): Boolean
+  disconnectConnection(input: ConnOrgUserConnInput!): Boolean
   completeOnboarding(oid: String!, uid: String!): Boolean
   clearDeviceCache(oid: String!, uid: String!): Boolean
   createOrUpdateConnection(input: ConnectionInput!) : Boolean
