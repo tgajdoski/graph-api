@@ -283,10 +283,10 @@ input ConnOrgUserConnInput {
   source_type: String
   type: String
   updated_at: String
-  auth: auth
+  auth: auth_input
   ignore: Boolean
-  profile: Profile
-  publish: ConnectionPublish
+  profile: Profile_input
+  publish: ConnectionPublishInput
   status: String
   version: String
 }
