@@ -272,6 +272,25 @@ type Connection {
   version: String
 }
 
+type ConnOrgUserConn {
+  id: String
+  created_at: String
+  created_by:String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth
+  ignore: Boolean
+  profile: Profile
+  publish: ConnectionPublish
+  status: String
+  version: String
+}
+
 input DeviceCreateInput {
   endpointId: String
 }
@@ -679,8 +698,8 @@ type Query {
   organization_user_approvals(oid: String! , uid: String!): [OrganizationUserApproval]
   organization_user_approval(oid: String! , uid: String!, id: String!): OrganizationUserApproval
 
-  organization_user_connections(oid: String! , uid: String!): [OrganizationUserConnection]
-  organization_user_connection(oid: String! , uid: String!, id: String!): OrganizationUserConnection
+  organization_user_connections(oid: String! , uid: String!): [ConnOrgUserConn]
+  organization_user_connection(oid: String! , uid: String!, id: String!): ConnOrgUserConn
 
   notifications(platform: String!): [Notification]
   notification(platform: String! , id: String!): Notification
