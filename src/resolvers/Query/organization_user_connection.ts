@@ -14,13 +14,14 @@ export const organization_user_connections = {
     const orgsRef = orgsusrconnRef.child(`${oid}/${uid}`);
     let oucs = await  query({}, ctx , orgsRef);
     let output = [];
-    for( let ouc of oucs){
-      if(!ouc.id)
-       throw Error;
-      let id  = ouc.id;
-      let conn = await query({ id }, ctx , connectionsRef);
-      output.push(Lodash.assign(ouc, conn));
-    }
+    if (oucs)
+      for( let ouc of oucs){
+        if(!ouc.id)
+        throw Error;
+        let id  = ouc.id;
+        let conn = await query({ id }, ctx , connectionsRef);
+        output.push(Lodash.assign(ouc, conn));
+      }
     return output;
    },
    async organization_user_connection(_, { oid, uid, id }, ctx) {
