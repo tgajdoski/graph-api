@@ -16,11 +16,11 @@ export const organization_user_connections = {
     let output = [];
     if (oucs)
       for( let ouc of oucs){
-        if(!ouc.id)
-        throw Error;
-        let id  = ouc.id;
-        let conn = await query({ id }, ctx , connectionsRef);
-        output.push(Lodash.assign(ouc, conn));
+        if(ouc.id) {
+          let id  = ouc.id;
+          let conn = await query({ id }, ctx , connectionsRef);
+          output.push(Lodash.assign(ouc, conn));
+        }
       }
     return output;
    },
