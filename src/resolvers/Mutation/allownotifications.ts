@@ -31,32 +31,5 @@ export const allownotifications_mutation = {
       console.log("error :", error);
       throw error;
     }
-  },
-  async checkAllowNotification(_, { uid, oid }, ctx) {
-    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
-    let updates = {
-      [`/organization_users/${oid}/${uid}/settings/notifications/push/off`]: false
-    };
-    try {
-      await rootRef.update(updates);
-      return true;
-    } catch (error) {
-      console.log("error :", error);
-      throw error;
-    }
-  },
-  async checkDissallowNotification(_, { uid, oid }, ctx) {
-    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
-
-    let updates = {
-      [`/organization_users/${oid}/${uid}/settings/notifications/push/off`]: true
-    };
-    try {
-      await rootRef.update(updates);
-      return true;
-    } catch (error) {
-      console.log("error :", error);
-      throw error;
-    }
   }
 };

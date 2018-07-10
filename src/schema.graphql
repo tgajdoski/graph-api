@@ -1,180 +1,3 @@
-# import Post from "./generated/prisma.graphql"
-
-type AuthPayload {
-  id: String!
-  token: String!
-  refreshtoken: String! 
-  user: User  
-  organizations : [User_Organization]
-}
-
-type refreshPayload {
-  id: String!
-  token: String!
-  refreshtoken: String! 
-}
-
-type ErrorType {
-  code: String
-  message: String
-}
-
-type responsePayload {
-  isSuccess: Boolean,
-  error: ErrorType
-}
-
-type User {
-  uid: String 
-  displayName: String
-  email: String
-  oid: String
-}
-
-input UserInput {
-  uid: String 
-  displayName: String
-  email: String
-  oid: String
-}
-
-
-type Role{
-  admin: Boolean
-  freelancer: Boolean
-  user: Boolean
-}
-
-
-input Role_input{
-  admin: Boolean
-  freelancer: Boolean
-  user: Boolean
-}
-
-
-type User_Organization {
-  oid: String!
-  account_type: String
-  default: Boolean
-  roles : Role
-}
-
-
-type Settings {
-  opt_in: Boolean
-  timezone: String
-}
-
-type Publish {
-  settings: Settings
-  status: String
-  updated_at: String
-}
-
-input ApprovalCreateInput {
-  category: String
-  connection_id: String 
-  content: String
-  created_at: String
-  created_by: String
-  edited_by: String
-  image: String
-  oid: String
-  original_content: String
-  source: String
-  status: String
-  uid: String
-  updated_at: String
-  updated_by: String
-}
-
-input ApprovalInput {
-  id: String
-  category: String
-  connection_id: String
-  content: String
-  created_at: String
-  created_by: String
-  edited_by: String
-  image: String
-  oid: String
-  original_content: String
-  source: String
-  status: String
-  uid: String
-  updated_at: String
-  updated_by: String
-}
-
-
-input OrganizationUserApprovalCreateInput {
-  uid: String!
-  oid: String!
-  created_at: String
-  created_by: String
-  source: String!
-  status: String!
-}
-
-input OrganizationUserApprovalInput {
-  id: String!
-  uid: String!
-  oid: String!
-  created_at: String
-  created_by: String
-  source: String
-  status: String
-}
-
-input OrganizationUserApprovalDeleteInput {
-  oid: String!
-  uid: String!
-  id: String!
-}
-
-
-input OrganizationUserConnectionCreateInput {
-  created_by:String
-  name: String
-  oid: String!
-  uid: String!
-  source: String!
-  source_type: String
-  type: String
-}
-
-input OrganizationUserConnectionInput {
-  created_by:String
-  name: String
-  oid: String!
-  uid: String!
-  source: String!
-  source_type: String
-  type: String
-}
-
-input OrganizationUserConnectionDeleteInput {
-  oid: String!
-  uid: String!
-  id: String!
-}
-
-
-type OrganizationUserApproval {
-  uid: String
-  oid: String
-  created_at: String
-  created_by: String
-  source: String
-  status: String
-}
-
-
-input ApprovalDeleteInput {
-  id: String!
-}
-
 type Approval {
   id: String!
   category: String
@@ -198,25 +21,64 @@ type Approval {
   updated_by: String
 }
 
+type Settings {
+  opt_in: Boolean
+  timezone: String
+}
+
+type Publish {
+  settings: Settings
+  status: String
+  updated_at: String
+}
+
+type ConnOrgUserConn {
+  id: String
+  created_at: String
+  created_by: String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth
+  ignore: Boolean
+  profile: Profile
+  publish: ConnectionPublish
+  status: String
+  version: String
+}
+
+type ConnectionPublish {
+  settings: ConnectionPubishSettings
+}
+type ConnectionPubishSettings {
+  schedules: Schedules
+}
+type Schedules {
+  default: Default_Schedules
+}
+type Default_Schedules {
+  opt_in: Boolean
+  timezone: String
+  posting_times: [Time]
+}
+type Time {
+  daypart: String
+  hour: String
+  minute: String
+}
+
 type auth {
-  firebase_id : String
-  provider : String
+  firebase_id: String
+  provider: String
   access_token: String
-  created_at:  String
+  created_at: String
   expires: String
   expires_in: String
 }
-
-type ProfileRaw {
-  emailAddress: String
-  firstName: String
-  headline: String
-  id: String
-  lastName: String
-  pictureUrl: String
-  publicProfileUrl: String
-}
-
 type Profile {
   avatar: String
   bio: String
@@ -229,190 +91,61 @@ type Profile {
   url: String
   slug: String
 }
-
-type Time {
-  daypart: String
-  hour: String
-  minute: String
-}
-
-type Default_Schedules {
-  opt_in: Boolean
-  timezone: String
-  posting_times: [Time]
-}
-
-type Schedules {
-  default: Default_Schedules
-}
-
-type ConnectionPubishSettings {
-  schedules: Schedules
-}
-
-type ConnectionPublish {
-  settings: ConnectionPubishSettings
-}
-
-type Connection {
-  id: String!
-  auth: auth
-  created_at: String
-  created_by: String
-  ignore: Boolean
-  name: String
-  oid: String
-  profile: Profile
-  publish: ConnectionPublish
-  source: String
-  source_type: String
-  status: String
-  type: String
-  uid: String
-  version: String
-}
-
-input ConnOrgUserConnInput {
+type ProfileRaw {
+  emailAddress: String
+  firstName: String
+  headline: String
   id: String
-  created_at: String
-  created_by:String
-  name: String
-  oid: String
+  lastName: String
+  pictureUrl: String
+  publicProfileUrl: String
+}
+
+type AuthPayload {
+  id: String!
+  token: String!
+  refreshtoken: String!
+  user: User
+  organizations: [User_Organization]
+}
+type User {
   uid: String
-  source: String
-  source_type: String
-  type: String
-  updated_at: String
-  auth: auth_input
-  user: UserInput
-  ignore: Boolean
-  profile: Profile_input
-  publish: ConnectionPublishInput
-  status: String
-  version: String
-}
-
-type ConnOrgUserConn {
-  id: String
-  created_at: String
-  created_by:String
-  name: String
+  displayName: String
+  email: String
   oid: String
-  uid: String
-  source: String
-  source_type: String
-  type: String
-  updated_at: String
-  auth: auth
-  ignore: Boolean
-  profile: Profile
-  publish: ConnectionPublish
-  status: String
-  version: String
+}
+type User_Organization {
+  oid: String!
+  account_type: String
+  default: Boolean
+  roles: Role
+}
+type Role {
+  admin: Boolean
+  freelancer: Boolean
+  user: Boolean
 }
 
-input DeviceCreateInput {
-  endpointId: String
+type responsePayload {
+  isSuccess: Boolean
+  error: ErrorType
+}
+type ErrorType {
+  code: String
+  message: String
 }
 
-input DeviceInput {
-  id: String
-  endpointId: String
-}
-
-input DeviceDeleteInput {
+type refreshPayload {
   id: String!
-}
-
-type Device {
-  id: String!
-  endpointId: String
-}
-
-input GroupInput {
-  id: String!
-  created_at: String
-  created_by: String
-  description: String
-  members: String
-  name: String
-  oid: String
-  updated_at: String
-  updated_by: String
-}
-
-input GroupCreateInput {
-  created_at: String
-  created_by: String
-  description: String
-  members: String
-  name: String
-  oid: String
-  updated_at: String
-  updated_by: String
-}
-
-input GroupDeleteInput {
-  id: String!
-}
-
-type Group {
-  id: String!
-  created_at: String
-  created_by: String
-  description: String
-  members: String
-  name: String
-  oid: String
-  updated_at: String
-  updated_by: String
-}
-
-input OrgProfileInput {
-  about: String
-  name: String
-}
-
-input OrganizationInput {
-  id: String!
-  created_at: String
-  members: String
-  profile: OrgProfileInput
-  slug: String
-  streams: String
-}
-
-input OrganizationCreateInput {
-  created_at: String
-  members: String
-  profile: OrgProfileInput
-  slug: String
-  streams: String
-}
-
-input OrganizationDeleteInput {
-  id: String!
-}
-
-type OrgProfile {
-  about: String
-  name: String
-}
-
-type Organization {
-  id: String!
-  created_at: String
-  members: String
-  profile: OrgProfile
-  slug: String
-  streams: String
+  token: String!
+  refreshtoken: String!
 }
 
 input auth_input {
   firebase_id: String
   provider: String
   access_token: String
-  created_at:  String
+  created_at: String
   expires: String
   expires_in: String
 }
@@ -440,52 +173,35 @@ input Profile_input {
 }
 
 input UserInput {
-  uid: String 
+  uid: String
   displayName: String
   email: String
   oid: String
 }
 
-
+input ConnOrgUserConnInput {
+  id: String
+  created_at: String
+  created_by: String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth_input
+  user: UserInput
+  ignore: Boolean
+  profile: Profile_input
+  publish: ConnectionPublishInput
+  status: String
+  version: String
+}
 input TimeInput {
   daypart: String
   hour: String
   minute: String
-}
-
-input Default_SchedulesInput {
-  opt_in: Boolean
-  timezone: String
-  posting_times: [TimeInput]
-}
-
-input SchedulesInput {
-  default: Default_SchedulesInput
-}
-
-input ConnectionPubishSettingsInput {
-  schedules: SchedulesInput
-}
-
-input ConnectionPublishInput {
-  settings: ConnectionPubishSettingsInput
-}
-
-input ConnectionCreateInput {
-  auth: auth_input
-  created_by: String
-  ignore: Boolean
-  name: String
-  oid: String
-  user: UserInput
-  profile: Profile_input
-  publish: ConnectionPublishInput
-  source: String
-  source_type: String
-  status: String
-  type: String
-  uid: String
-  version: String
 }
 
 input ConnectionInput {
@@ -507,293 +223,71 @@ input ConnectionInput {
   uid: String
   version: String
 }
-
-input ConnectionDeleteInput {
-  id: String!
+input ConnectionPublishInput {
+  settings: ConnectionPubishSettingsInput
 }
-
-
-type DeviceNotif {
-  available : Boolean
-  cordova : String
-  isVirtual : Boolean
-  manufacturer : String
-  model :String
-  platform :String
-  serial : String
-  uuid : String
-  version : String
+input ConnectionPubishSettingsInput {
+  schedules: SchedulesInput
 }
-
-input DeviceNotifInput {
-  id: String
-  available : Boolean
-  cordova : String
-  isVirtual : Boolean
-  manufacturer : String
-  model :String
-  platform :String
-  serial : String
-  uuid : String
-  version : String
+input SchedulesInput {
+  default: Default_SchedulesInput
 }
-
-type Sms {
-  countrycode : String
-  intlprefix : String
-  phonenumber :String
-  formatedNumber: String
+input Default_SchedulesInput {
+  opt_in: Boolean
+  timezone: String
+  posting_times: [TimeInput]
 }
-
-input SmsInput {
-  countrycode : String
-  intlprefix : String
-  phonenumber :String
-  formatedNumber: String
-}
-
-
-type Notification {
-  id: String
-  app : String
-  created_at : String
-  sms: Sms
-  device: DeviceNotif
-  platform :String
-  status : Int
-  token : String
-  uid : String
-}
-
-type OrganizationUser {
-
-  account_type : String
-  email : String
-  profile: Profile
-  roles : Role
-  settings: UserSettings
-}
-
-input OrganizationUserInput {
-  id: String
-  oid: String
-  account_type : String
-  email : String
-  profile: Profile_input
-  roles : Role_input
-  settings: UserSettings_input
-}
-
-input OrganizationUserDeleteInput {
-  oid: String!
-  id: String!
-}
-
-type Push {
-  off: Boolean
-}
-
-type UserSettingsNotification{
-  push: Push
-}
-
-type UserMobile {
-  onboarded : String
-}
-input UserMobile_input {
-  onboarded : String
-}
-
-input Push_input {
-  off: Boolean
-}
-
-input UserSettingsNotification_input{
-  push: Push_input
-}
-
-type EventType {
-  oid: String!
-  uid: String
-  user: User
-  profile: Profile
-  connection: Connection
-}
-
-input sendSocialConnectCommandEventInputType {
-  oid: String!
-  uid: String
-  user: UserInput
-  profile: Profile_input
-  connection: ConnectionInput
-}
-
-type UserSettings {
-    locale : String
-    mobile : UserMobile
-    notifications: UserSettingsNotification
-  }
-
-input UserSettings_input {
-    locale : String
-    mobile : UserMobile_input
-    notifications: UserSettingsNotification_input
-  }
-
-
 
 input NotificationInput {
-  app : String
-  created_at : String
+  app: String
+  created_at: String
   sms: SmsInput
   device: DeviceNotifInput
-  platform :String
-  status : Int
-  token : String
-  uid : String
-}
-
-type UserNotification {
-  id: String!
-  app : String
-  created_at : String
-  platform :String
-  status : Int
-  token : String
-  uid : String
-}
-
-input UserNotificationInput {
-  id: String!
-  app : String
-  created_at : String
-  platform :String
-  status : Int
-  token : String
-  uid : String
-}
-
-
-input UserNotificationDeleteInput {
-  uid: String!
-  id: String!
-}
-
-input NotificationDeleteInput {
-  platform: String!
-  id: String!
-}
-
-
-type OrganizationUserConnection {
-  id: String
-  created_at: String
-  created_by:String
-  name: String
-  oid: String
+  platform: String
+  status: Int
+  token: String
   uid: String
-  source: String
-  source_type: String
-  type: String
-  updated_at: String
+}
+input SmsInput {
+  countrycode: String
+  intlprefix: String
+  phonenumber: String
+  formatedNumber: String
+}
+input DeviceNotifInput {
+  id: String
+  available: Boolean
+  cordova: String
+  isVirtual: Boolean
+  manufacturer: String
+  model: String
+  platform: String
+  serial: String
+  uuid: String
+  version: String
 }
 
 type Query {
-  approvals: [Approval]
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
-  approval(id: String!): Approval
-
-  devices: [Device]
-  device(id: String!): Device
-
-  connections: [Connection]
-  connection(id: String!): Connection
-
-  groups: [Group]
-  group(id: String!): Group
-
-  organizations: [Organization]
-  organization(id: String!): Organization
-
-  organization_user_approvals(oid: String! , uid: String!): [OrganizationUserApproval]
-  organization_user_approval(oid: String! , uid: String!, id: String!): OrganizationUserApproval
-
-  organization_user_connections(oid: String! , uid: String!): [ConnOrgUserConn]
-  organization_user_connection(oid: String! , uid: String!, id: String!): ConnOrgUserConn
-
-  notifications(platform: String!): [Notification]
-  notification(platform: String! , id: String!): Notification
-
-  user_notifications(uid: String!): [UserNotification]
-  user_notification(uid: String! , id: String!): UserNotification
-
-  organization_users(oid: String! ): [OrganizationUser]
-  organization_user(oid: String! , uid: String!): OrganizationUser
+  organization_user_connections(oid: String!, uid: String!): [ConnOrgUserConn]
 }
 
 type Mutation {
-
   login(email: String!, password: String!): AuthPayload!
   passwordResetEmail(email: String!): responsePayload
-  passwordUpdate(email: String!, oid: String!, oldpass: String!, newpass: String!): responsePayload
-  refreshtokens(refreshToken: String!): refreshPayload 
-  createApproval(input: ApprovalCreateInput!): Approval
-  updateApproval(input: ApprovalInput): Approval
-  deleteApproval(input: ApprovalDeleteInput): Approval
-
-  createDevice(input: DeviceCreateInput!): Device
-  updateDevice(input: DeviceInput): Device
-  deleteDevice(input: DeviceDeleteInput): Device
-
-  createGroup(input: GroupCreateInput!): Group
-  updateGroup(input: GroupInput): Group
-  deleteGroup(input: GroupDeleteInput): Group
-
-  createOrganization(input: OrganizationCreateInput!): Organization
-  updateOrganization(input: OrganizationInput): Organization
-  deleteOrganization(input: OrganizationDeleteInput): Organization
-
-  createOrganizationUserApproval(input: OrganizationUserApprovalCreateInput!): OrganizationUserApproval
-  updateOrganizationUserApproval(input: OrganizationUserApprovalInput): OrganizationUserApproval
-  deleteOrganizationUserApporval(input: OrganizationUserApprovalDeleteInput): OrganizationUserApproval
-
-  createConnection(input: ConnectionCreateInput!): Connection
-  updateConnection(input: ConnectionInput): Connection
-  deleteConnection(input: ConnectionDeleteInput): Connection
-
-  createOrganizationUserConnection(input: OrganizationUserConnectionCreateInput!): OrganizationUserConnection
-  updateOrganizationUserConnection(input: OrganizationUserConnectionInput): OrganizationUserConnection
-  deleteOrganizationUserConnection(input: OrganizationUserConnectionDeleteInput): OrganizationUserConnection
-
+  passwordUpdate(
+    email: String!
+    oid: String!
+    oldpass: String!
+    newpass: String!
+  ): responsePayload
+  refreshtokens(refreshToken: String!): refreshPayload
 
   disconnectConnection(input: ConnOrgUserConnInput!): Boolean
   completeOnboarding(oid: String!, uid: String!): Boolean
   clearDeviceCache(oid: String!, uid: String!): Boolean
-  createOrUpdateConnection(input: ConnectionInput!) : Boolean
-
-
-
-  createNotification(input: NotificationInput!): Notification
-  updateNotification(input: NotificationInput): Notification
-  deleteNotification(input: NotificationDeleteInput): Notification
-
-  createUserNotification(input: UserNotificationInput!): UserNotification
-  updateUserNotification(input: UserNotificationInput): UserNotification
-  deleteUserNotification(input: UserNotificationDeleteInput): UserNotification
-
+  createOrUpdateConnection(input: ConnectionInput!): Boolean
 
   allowNotification(input: NotificationInput!, oid: String!): Boolean
-  checkAllowNotification(uid: String!, oid: String!): Boolean
-  checkDissallowNotification(uid: String!, oid: String!): Boolean
-
-
   allowsms(input: NotificationInput!, oid: String!): Boolean
-  checkallowsms(uid: String!, oid: String!): Boolean
-  checkdissallowsms(uid: String!, oid: String!): Boolean
-  
-
-  createOrganizationUser(input: OrganizationUserInput!): OrganizationUser
-  updateOrganizationUser(input: OrganizationUserInput): OrganizationUser
-  deleteOrganizationUser(input: OrganizationUserDeleteInput): OrganizationUser
-
 }
