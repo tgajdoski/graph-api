@@ -3,7 +3,6 @@ import { Prisma } from "./generated/prisma";
 import resolvers from "./resolvers";
 import middwre from "./middleware/checkuser";
 import { importSchema } from "graphql-import";
-import { makeExecutableSchema } from "graphql-tools";
 
 // import typeDefs from "./schema.graphql";
 const typeDefs = importSchema("src/schema/schema.graphql");

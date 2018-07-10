@@ -4,8 +4,8 @@ const Lodash = require("lodash");
 const orgsusrconnRef = admin.database().ref("organization_user_connections");
 const connectionsRef = admin.database().ref("connections");
 
-export const organizationUserConnection = {
-  async organizationUserConnection(_, { oid, uid }, ctx) {
+export const organizationUserConnections = {
+  async organizationUserConnections(_, { oid, uid }, ctx) {
     const orgsRef = orgsusrconnRef.child(`${oid}/${uid}`);
     let oucs = await query({}, ctx, orgsRef);
     let output = [];

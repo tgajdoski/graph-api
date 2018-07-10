@@ -1,8 +1,8 @@
 import { auth } from "./Mutation/auth";
 const { approvals } = require("./Query/approvals");
 const {
-  organizationUserConnection
-} = require("./Query/organizationUserConnection");
+  organizationUserConnections
+} = require("./Query/organizationUserConnections");
 
 const {
   allownotifications_mutation
@@ -15,7 +15,7 @@ const { allowsms_mutation } = require("./Mutation/allowsms");
 export default {
   Query: {
     ...approvals,
-    ...organizationUserConnection
+    ...organizationUserConnections
   },
   Mutation: {
     ...auth,

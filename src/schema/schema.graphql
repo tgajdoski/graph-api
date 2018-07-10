@@ -5,7 +5,7 @@
 
 type Query {
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
-  organizationUserConnection(oid: String!, uid: String!): [ConnOrgUserConn]
+  organizationUserConnections(oid: String!, uid: String!): [ConnOrgUserConn]
 }
 
 type Mutation {
