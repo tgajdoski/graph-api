@@ -1,7 +1,4 @@
-const { getUserId, ApprovalStatus, PublishStatu } = require("../../utils");
 const admin = require("firebase-admin");
-import { query } from "../query-helper";
-const functions = require("firebase-functions");
 const Lodash = require("lodash");
 var serviceAccount = require("../../qnary-dev.json");
 
@@ -16,17 +13,6 @@ admin.initializeApp({
 });
 
 const approvalsRef = admin.database().ref("approvals");
-const orgsuserappRef = admin.database().ref("organization_user_approvals");
-
-function isApproved(approval) {
-  return approval.status === ApprovalStatus.Approved;
-}
-function isRejected(approval) {
-  return approval.status === ApprovalStatus.Rejected;
-}
-function isPending(approval) {
-  return approval.status === ApprovalStatus.Sent;
-}
 
 export const approvals = {
   async userapprovals(_, { oid, uid, status }, ctx) {

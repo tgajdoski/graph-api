@@ -1,12 +1,5 @@
-import * as bcrypt from "bcryptjs";
-import * as jwt from "jsonwebtoken";
-// import * as admin from 'firebase-admin'
-// import * as functions from 'firebase-functions'
-// import * as Lodash from 'lodash'
-// import * as serviceAccount from '../../qnary-dev.json'
 const firebase = require("firebase");
 const admin = require("firebase-admin");
-const functions = require("firebase-functions");
 const Lodash = require("lodash");
 var serviceAccount = require("../../qnary-dev.json");
 const axios = require("axios");
@@ -50,7 +43,7 @@ export const auth = {
       )
     };
   },
-  async refreshtokens(parent, { refreshToken }, ctx, info) {
+  async refreshTokens(parent, { refreshToken }, ctx, info) {
     let refUrl = `https://securetoken.googleapis.com/v1/token?key=${
       process.env.apiKey
     }&grant_type=refresh_token&refresh_token=${refreshToken}`;
@@ -66,51 +59,57 @@ export const auth = {
   },
   async passwordResetEmail(parent, { email }, ctx, info) {
     let auth = firebase.auth();
-    let response = await auth.sendPasswordResetEmail(email).then(function() {
-      return {
-        isSuccess: true,
-        error : null
-      };
-     }).catch(function(error) {
-       // An error happened.
-       let err = error.code ? { code: error.code, message: error.message} : { code: "GENERIC_ERROR", message: error}
-       return {
-        isSuccess: false,
-        error : err
-      } 
-    });
+    let response = await auth
+      .sendPasswordResetEmail(email)
+      .then(function() {
+        return {
+          isSuccess: true,
+          error: null
+        };
+      })
+      .catch(function(error) {
+        // An error happened.
+        let err = error.code
+          ? { code: error.code, message: error.message }
+          : { code: "GENERIC_ERROR", message: error };
+        return {
+          isSuccess: false,
+          error: err
+        };
+      });
     return response;
   },
-    async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
+  async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
     try {
-      await auth.login(parent, {email, password: oldpass }, ctx, info);
-      const user =  firebase.auth().currentUser;
+      await auth.login(parent, { email, password: oldpass }, ctx, info);
+      const user = firebase.auth().currentUser;
       try {
         await user.updatePassword(newpass);
-        await admin.database().ref(`organization_users/${oid}/${user.uid}/settings/mobile`).update({
-          'password_last_changed': firebase.database.ServerValue.TIMESTAMP
-        });
+        await admin
+          .database()
+          .ref(`organization_users/${oid}/${user.uid}/settings/mobile`)
+          .update({
+            password_last_changed: firebase.database.ServerValue.TIMESTAMP
+          });
         return {
           isSuccess: true
         };
-      }
-      catch (error) {
-        let err = error.code ? { code: error.code, message: error.message} : { code: "GENERIC_ERROR", message: error}
+      } catch (error) {
+        let err = error.code
+          ? { code: error.code, message: error.message }
+          : { code: "GENERIC_ERROR", message: error };
         console.error(`login failed: ${error}`);
         return {
           isSuccess: false,
-          error : err
-        } 
+          error: err
+        };
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error(`login failed AAA: ${error}`);
       return {
         isSuccess: false,
-        error : { code: "LOGIN_FAILED", message: error.message }
-      } 
-     }
-  
-  },
-
+        error: { code: "LOGIN_FAILED", message: error.message }
+      };
+    }
+  }
 };

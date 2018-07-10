@@ -1,7 +1,4 @@
-import { create } from "domain";
-
 const admin = require("firebase-admin");
-const functions = require("firebase-functions");
 const Lodash = require("lodash");
 
 const rootRef = admin.database().ref();
@@ -36,7 +33,7 @@ export const boarding_connections_mutation = {
       throw error;
     }
   },
-  async completeOnboarding(_, { oid, uid }, ctx) {
+  async completeOnBoarding(_, { oid, uid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     var onboardtime = admin.database.ServerValue.TIMESTAMP;
 

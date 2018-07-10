@@ -269,7 +269,7 @@ input DeviceNotifInput {
 
 type Query {
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
-  organization_user_connections(oid: String!, uid: String!): [ConnOrgUserConn]
+  organizationUserConnection(oid: String!, uid: String!): [ConnOrgUserConn]
 }
 
 type Mutation {
@@ -281,13 +281,13 @@ type Mutation {
     oldpass: String!
     newpass: String!
   ): responsePayload
-  refreshtokens(refreshToken: String!): refreshPayload
+  refreshTokens(refreshToken: String!): refreshPayload
 
   disconnectConnection(input: ConnOrgUserConnInput!): Boolean
-  completeOnboarding(oid: String!, uid: String!): Boolean
+  completeOnBoarding(oid: String!, uid: String!): Boolean
   clearDeviceCache(oid: String!, uid: String!): Boolean
   createOrUpdateConnection(input: ConnectionInput!): Boolean
 
   allowNotification(input: NotificationInput!, oid: String!): Boolean
-  allowsms(input: NotificationInput!, oid: String!): Boolean
+  allowSms(input: NotificationInput!, oid: String!): Boolean
 }

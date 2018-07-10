@@ -1,11 +1,9 @@
 const admin = require("firebase-admin");
-const functions = require("firebase-functions");
 const Lodash = require("lodash");
-
 const rootRef = admin.database().ref();
 
 export const allowsms_mutation = {
-  async allowsms(_, { input, oid }, ctx) {
+  async allowSms(_, { input, oid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     const userNotif = Lodash.pick(input, [
       "id",
