@@ -1,0 +1,30 @@
+input NotificationInput {
+  app: String
+  created_at: String
+  sms: SmsInput
+  device: DeviceNotifInput
+  platform: String
+  status: Int
+  token: String
+  uid: String
+}
+
+input DeviceNotifInput {
+  id: String
+  available: Boolean
+  cordova: String
+  isVirtual: Boolean
+  manufacturer: String
+  model: String
+  platform: String
+  serial: String
+  uuid: String
+  version: String
+}
+
+input SmsInput {
+  countrycode: String
+  intlprefix: String
+  phonenumber: String
+  formatedNumber: String
+}

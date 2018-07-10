@@ -1,0 +1,29 @@
+# import * as approval from './approval.graphql'
+# import * as notification from './notification.graphql'
+# import * as orgUserConnection from './orgUserConnection.graphql'
+# import * as user from './user.graphql'
+
+type Query {
+  userapprovals(oid: String!, uid: String!, status: String): [Approval]
+  organizationUserConnection(oid: String!, uid: String!): [ConnOrgUserConn]
+}
+
+type Mutation {
+  login(email: String!, password: String!): AuthPayload!
+  passwordResetEmail(email: String!): responsePayload
+  passwordUpdate(
+    email: String!
+    oid: String!
+    oldpass: String!
+    newpass: String!
+  ): responsePayload
+  refreshTokens(refreshToken: String!): refreshPayload
+
+  disconnectConnection(input: ConnOrgUserConnInput!): Boolean
+  completeOnBoarding(oid: String!, uid: String!): Boolean
+  clearDeviceCache(oid: String!, uid: String!): Boolean
+  createOrUpdateConnection(input: ConnectionInput!): Boolean
+
+  allowNotification(input: NotificationInput!, oid: String!): Boolean
+  allowSms(input: NotificationInput!, oid: String!): Boolean
+}

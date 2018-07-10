@@ -1,0 +1,165 @@
+type ConnOrgUserConn {
+  id: String
+  created_at: String
+  created_by: String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth
+  ignore: Boolean
+  profile: Profile
+  publish: ConnectionPublish
+  status: String
+  version: String
+}
+
+type auth {
+  firebase_id: String
+  provider: String
+  access_token: String
+  created_at: String
+  expires: String
+  expires_in: String
+}
+
+type Profile {
+  avatar: String
+  bio: String
+  email: String
+  firstname: String
+  id: String
+  lastname: String
+  name: String
+  raw: ProfileRaw
+  url: String
+  slug: String
+}
+type ProfileRaw {
+  emailAddress: String
+  firstName: String
+  headline: String
+  id: String
+  lastName: String
+  pictureUrl: String
+  publicProfileUrl: String
+}
+
+type ConnectionPublish {
+  settings: ConnectionPubishSettings
+}
+type ConnectionPubishSettings {
+  schedules: Schedules
+}
+type Schedules {
+  default: Default_Schedules
+}
+type Default_Schedules {
+  opt_in: Boolean
+  timezone: String
+  posting_times: [Time]
+}
+type Time {
+  daypart: String
+  hour: String
+  minute: String
+}
+
+input auth_input {
+  firebase_id: String
+  provider: String
+  access_token: String
+  created_at: String
+  expires: String
+  expires_in: String
+}
+
+input ProfileRawInput {
+  emailAddress: String
+  firstName: String
+  headline: String
+  id: String
+  lastName: String
+  pictureUrl: String
+  publicProfileUrl: String
+}
+
+input Profile_input {
+  avatar: String
+  bio: String
+  email: String
+  firstname: String
+  id: String
+  lastname: String
+  name: String
+  raw: ProfileRawInput
+  url: String
+}
+
+input UserInput {
+  uid: String
+  displayName: String
+  email: String
+  oid: String
+}
+input ConnOrgUserConnInput {
+  id: String
+  created_at: String
+  created_by: String
+  name: String
+  oid: String
+  uid: String
+  source: String
+  source_type: String
+  type: String
+  updated_at: String
+  auth: auth_input
+  user: UserInput
+  ignore: Boolean
+  profile: Profile_input
+  publish: ConnectionPublishInput
+  status: String
+  version: String
+}
+input TimeInput {
+  daypart: String
+  hour: String
+  minute: String
+}
+
+input ConnectionInput {
+  id: String
+  auth: auth_input
+  created_at: String
+  created_by: String
+  ignore: Boolean
+  name: String
+  origin: String
+  oid: String
+  user: UserInput
+  profile: Profile_input
+  publish: ConnectionPublishInput
+  source: String
+  source_type: String
+  status: String
+  type: String
+  uid: String
+  version: String
+}
+input ConnectionPublishInput {
+  settings: ConnectionPubishSettingsInput
+}
+input ConnectionPubishSettingsInput {
+  schedules: SchedulesInput
+}
+input SchedulesInput {
+  default: Default_SchedulesInput
+}
+input Default_SchedulesInput {
+  opt_in: Boolean
+  timezone: String
+  posting_times: [TimeInput]
+}

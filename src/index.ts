@@ -2,9 +2,14 @@ import { GraphQLServer } from "graphql-yoga";
 import { Prisma } from "./generated/prisma";
 import resolvers from "./resolvers";
 import middwre from "./middleware/checkuser";
+import { importSchema } from "graphql-import";
+import { makeExecutableSchema } from "graphql-tools";
+
+// import typeDefs from "./schema.graphql";
+const typeDefs = importSchema("src/schema/schema.graphql");
 
 const server = new GraphQLServer({
-  typeDefs: "./src/schema.graphql",
+  typeDefs: typeDefs,
   resolvers,
   context: req => ({
     ...req,
@@ -21,5 +26,5 @@ server.express.post(server.options.endpoint, (req, res, next) => {
 });
 
 server.start(() => {
-  console.log(`Server is running on http://localhost:4000`);
+  console.log(`Server is running`);
 });

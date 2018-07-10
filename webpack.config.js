@@ -40,7 +40,11 @@ var config = {
   module: {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader", exclude: /node_modules/ },
+      {
+        test: /\.tsx?$/,
+        loader: "awesome-typescript-loader",
+        exclude: /node_modules/
+      },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       // { enforce: "pre", test: /\.js$/, loader: "source-map-loader", exclude: /node_modules/ }
@@ -52,7 +56,7 @@ var config = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: [nodeExternals()],
-  
+
   // externals: {
   //     // "react": "React",
   //     // "react-dom": "ReactDOM"
@@ -62,19 +66,17 @@ var config = {
     new webpack.DefinePlugin({
       __COMMIT_HASH__: JSON.stringify(commitHash),
     }),
-    new CopyWebpackPlugin([
-      {
-        from: 'package.json',
-        transform: function(content, path) {
-          var package = JSON.parse(content);
+    new CopyWebpackPlugin([{
+      from: 'package.json',
+      transform: function (content, path) {
+        var package = JSON.parse(content);
 
-          // ({id, title}) => ({id, title})
+        // ({id, title}) => ({id, title})
 
-          var rtn = _.pick(package, ['name', 'description', 'version', 'dependencies']);
-          return JSON.stringify(rtn, null, 2);
-        },
+        var rtn = _.pick(package, ['name', 'description', 'version', 'dependencies']);
+        return JSON.stringify(rtn, null, 2);
       },
-    ]),
+    }, ]),
     // new webpack.EnvironmentPlugin({
     //   NODE_ENV: 'production', // use 'development' unless process.env.NODE_ENV is defined
     //   DEBUG: "*",

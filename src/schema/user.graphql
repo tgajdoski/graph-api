@@ -1,0 +1,39 @@
+type AuthPayload {
+  id: String!
+  token: String!
+  refreshtoken: String!
+  user: User
+  organizations: [User_Organization]
+}
+type User {
+  uid: String
+  displayName: String
+  email: String
+  oid: String
+}
+type User_Organization {
+  oid: String!
+  account_type: String
+  default: Boolean
+  roles: Role
+}
+type Role {
+  admin: Boolean
+  freelancer: Boolean
+  user: Boolean
+}
+
+type responsePayload {
+  isSuccess: Boolean
+  error: ErrorType
+}
+type ErrorType {
+  code: String
+  message: String
+}
+
+type refreshPayload {
+  id: String!
+  token: String!
+  refreshtoken: String!
+}
