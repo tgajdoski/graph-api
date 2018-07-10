@@ -1,6 +1,7 @@
 dist
 package-lock.json
 node_modules
+_tests
 .idea
 .vscode
 *.log
