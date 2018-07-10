@@ -1,9 +1,7 @@
-import * as ava from 'ava';
+import * as ava from "ava";
 // fix warning while running
 
-import test from 'ava';
-import * as Lodash from 'lodash';
-const MockDate = require('mockdate');
+import test from "ava";
+import * as Lodash from "lodash";
 
-
-require('./approvals.test');
+require("./login.test");

@@ -3,10 +3,11 @@
   "scripts": {
     "start": "dotenv -- nodemon -e ts,graphql -x ts-node src/index.ts",
     "dev": "npm-run-all --parallel start playground",
+    "build": "rimraf dist && tsc && ./node_modules/.bin/webpack ",
     "debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
     "playground": "graphql playground",
-    "test": "ava",
-    "build": "rimraf dist && tsc"
+    "test": "./node_modules/.bin/webpack && ava",
+    "test:jest": "jest --config jest.json"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -22,6 +23,8 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.1",
     "ava": "^0.25.0",
+    "awesome-typescript-loader": "^3.4.1",
+    "copy-webpack-plugin": "^4.3.1",
     "dotenv-cli": "1.4.0",
     "graphql-cli": "2.16.0",
     "nodemon": "1.17.4",
@@ -29,7 +32,9 @@
     "prisma": "1.8.3",
     "rimraf": "2.6.2",
     "ts-node": "6.0.3",
-    "typescript": "2.8.3"
+    "typescript": "2.8.3",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "ava": {
     "files": [
