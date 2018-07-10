@@ -5,6 +5,7 @@
     "dev": "npm-run-all --parallel start playground",
     "debug": "dotenv -- nodemon -e ts,graphql -x ts-node --inspect src/index.ts",
     "playground": "graphql playground",
+    "test": "ava",
     "build": "rimraf dist && tsc"
   },
   "dependencies": {
@@ -13,12 +14,14 @@
     "firebase": "^5.0.3",
     "firebase-admin": "^5.12.0",
     "firebase-functions": "^1.0.1",
+    "graphql-request": "^1.6.0",
     "graphql-yoga": "1.13.1",
     "jsonwebtoken": "8.2.1",
     "prisma-binding": "1.5.19"
   },
   "devDependencies": {
     "@types/bcryptjs": "2.4.1",
+    "ava": "^0.25.0",
     "dotenv-cli": "1.4.0",
     "graphql-cli": "2.16.0",
     "nodemon": "1.17.4",
@@ -27,5 +30,10 @@
     "rimraf": "2.6.2",
     "ts-node": "6.0.3",
     "typescript": "2.8.3"
+  },
+  "ava": {
+    "files": [
+      "_tests/*.js"
+    ]
   }
 }
