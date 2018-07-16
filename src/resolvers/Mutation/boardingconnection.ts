@@ -63,6 +63,25 @@ export const boarding_connections_mutation = {
       // removing the user profile from connection input
       // updates[`/connections/${input.id}`] = Lodash.omit(input, ['user', 'profile']);
       updates[`/connections/${input.id}`] = input;
+
+      updates[
+        `/organization_user_connections/${input.oid}/${input.uid}/${
+          input.id
+        }/name`
+      ] =
+        input.name;
+      updates[
+        `/organization_user_connections/${input.oid}/${input.uid}/${
+          input.id
+        }/updated_by`
+      ] =
+        input.uid;
+      updates[
+        `/organization_user_connections/${input.oid}/${input.uid}/${
+          input.id
+        }/updated_at`
+      ] =
+        input.updated_at;
     } else {
       connectionRef = connectionsRef.push();
       input = Lodash.assign(input, {
