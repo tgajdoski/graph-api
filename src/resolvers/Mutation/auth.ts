@@ -59,7 +59,7 @@ export const auth = {
   },
   async passwordResetEmail(parent, { email }, ctx, info) {
     let auth = firebase.auth();
-    let response = await auth
+    let response = auth
       .sendPasswordResetEmail(email)
       .then(function() {
         return {
@@ -79,6 +79,21 @@ export const auth = {
       });
     return response;
   },
+  async alreadyOnboarded(_, { oid, uid }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
+    const orgsuserappRef = admin
+    try {
+      let onboard = (await admin.database().ref(`/organization_users/${oid}/${uid}/settings/mobile/onboarded`).once("value")).val();
+      console.log('ONBOARD' , onboard);
+      return {
+        isBoarded: onboard ?  true : false,
+        error: null
+      };
+    } catch (error) {
+      console.log('error', error)
+     throw new Error(`error: cant check onboard`);
+    };
+  },  
   async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
     try {
       await auth.login(parent, { email, password: oldpass }, ctx, info);

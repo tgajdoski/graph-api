@@ -18,6 +18,7 @@ type Mutation {
     newpass: String!
   ): responsePayload
   refreshTokens(refreshToken: String!): refreshPayload
+  alreadyOnboarded(oid: String!, uid: String!): responseOnBoarded
 
   disconnectConnection(input: ConnOrgUserConnInput!): Boolean
   completeOnBoarding(oid: String!, uid: String!): Boolean
