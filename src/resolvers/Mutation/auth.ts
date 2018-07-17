@@ -59,7 +59,7 @@ export const auth = {
   },
   async passwordResetEmail(parent, { email }, ctx, info) {
     let auth = firebase.auth();
-    let response = auth
+    let response = await auth
       .sendPasswordResetEmail(email)
       .then(function() {
         return {
