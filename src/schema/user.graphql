@@ -7,17 +7,68 @@ type AuthPayload {
 }
 type User {
   uid: String
-  displayName: String
+  account_type: String
   email: String
   oid: String
+  profile: User_Profile
+  roles: Role
 }
+
+type User_Profile {
+  firstName: String
+  lastName: String
+  name: String
+  slug: String
+  welcome: Welcome
+  timezone: String
+}
+
 type User_Organization {
   oid: String!
   account_type: String
   default: Boolean
   roles: Role
 }
+
+type Welcome {
+  connected: Boolean
+  curated: Boolean
+  searched: Boolean
+  welcomed: Boolean
+}
+
 type Role {
+  admin: Boolean
+  freelancer: Boolean
+  user: Boolean
+}
+
+input User_input {
+  uid: String
+  account_type: String
+  email: String
+  oid: String
+  profile: User_Profile_input
+  roles: Role_input
+}
+
+input User_Profile_input {
+  firstName: String
+  lastName: String
+  name: String
+  slug: String
+  welcome: Welcome_input
+  timezone: String
+}
+
+input Welcome_input {
+  connected: Boolean
+  curated: Boolean
+  searched: Boolean
+  welcomed: Boolean
+}
+
+input Role_input {
   admin: Boolean
   freelancer: Boolean
   user: Boolean

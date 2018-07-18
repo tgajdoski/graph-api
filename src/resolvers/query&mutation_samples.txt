@@ -405,15 +405,31 @@ createNotification(input:
 
 
 mutation{
-login(email: "t.gajdoski@gmail.com" , password: "AAAA")
+login(email: "t.gajdoski@gmail.com" , password: "M2xE")
   {
     token
     user
     {
       oid
       uid
-      displayName
+      profile{
+        firstName
+        lastName
+        name
+        slug
+        welcome{
+          connected
+          curated
+          searched
+          welcomed
+        }
+      }
       email
+      roles{
+        admin
+        freelancer
+        user
+      }
     }
     organizations
     {
@@ -429,9 +445,6 @@ login(email: "t.gajdoski@gmail.com" , password: "AAAA")
       }
     }
 }
-
-
-
 
 
 mutation
@@ -977,3 +990,64 @@ mutation
   clearDeviceCache(oid:"-KjOu2EQbfZb_sxUnwJV", uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
 }
 
+{
+	organizationAdmins(oid:"-KjOu2EQbfZb_sxUnwJV")
+  {
+    uid
+    account_type
+    email
+    oid
+    profile {
+      firstName
+      lastName
+      name
+      slug
+      welcome{
+        connected
+        curated
+        searched
+        welcomed
+      }
+    }
+    roles{
+      admin
+      freelancer
+      user
+    }
+  }
+}
+
+
+mutation
+{
+  updateApprovals(input:[ {
+    id: "-LHfy-sailOK7xREzq8T"
+    category: "Search"
+    connection_id: "-KlstxQBFe5vWL2lwq4m"
+    content: "MAMAMAM"
+    created_at: "1498481915089"
+    created_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    edited_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+    image: ""
+    oid: "-KjOu2EQbfZb_sxUnwJV"
+    original_content: "Google MOOGLE"
+    source:  "twitter"
+    status:  "draft"
+    uid:  "JH6TcumpfnMDdor6c5Ksns917cq1"
+    updated_at:  "1499867570622"
+    updated_by: "JH6TcumpfnMDdor6c5Ksns917cq1"
+  }], 
+    oid:"-KjOu2EQbfZb_sxUnwJV",
+    user:{
+      profile: {
+        firstName:"Toni",
+        lastName:"Gajdoski",
+        name:"Toni Gajdo",
+        slug:"tonigajdo",
+      },
+      email:"t.gajdoski@gmail.com",
+    },
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1",
+      status:"sent"
+  )
+}

@@ -6,6 +6,8 @@
 type Query {
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
   organizationUserConnections(oid: String!, uid: String!): [ConnOrgUserConn]
+
+  organizationAdmins(oid: String!) : [User]
 }
 
 type Mutation {
@@ -27,4 +29,10 @@ type Mutation {
 
   allowNotification(input: NotificationInput!, oid: String!): Boolean
   allowSms(input: NotificationInput!, oid: String!): Boolean
+
+  updateApproval(input: ApprovalInput): Approval
+  deleteApproval(input: ApprovalDeleteInput): Approval
+  updateApprovals(input: [ApprovalInput], oid: String!, uid: String!, user: User_input!, status : String!, subject: String): Boolean
+
+
 }
