@@ -20,17 +20,23 @@ export const auth = {
       .auth()
       .signInWithEmailAndPassword(email, password);
     const user = data.user;
+   
     if (!user) throw new Error(`No such user found for email: ${email}`);
     const user_org_snap = await admin
       .database()
       .ref(`user_organizations/${user.uid}`)
       .once("value");
     const user_org = user_org_snap.val();
+   
     let userwithoid = Lodash.pick(user, ["uid", "displayName", "email"]);
 
-    Object.keys(user_org).map(o => {
-      if (user_org[o].default)
-        userwithoid = Object.assign({ oid: o }, userwithoid);
+    Object.assign(userwithoid, { oid: Object.keys(user_org)[0] });
+
+    Object.keys(user_org).map(o => { 
+      if (user_org[o].default){
+        Object.assign(userwithoid, { oid: o });
+      }
+        //console.log('USER userwithoid', JSON.stringify(userwithoid));
     });
     return {
       id: user.uid,
