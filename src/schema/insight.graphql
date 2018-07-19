@@ -1,0 +1,57 @@
+type Insight {
+  actions: Actions
+  category: String
+  category_type_version: String
+  created_at: String
+  created_by: String
+  data: InsightData
+  oid: String
+  subscription: Subscription
+  type: String
+  uid: String
+  user: Insight_user
+  version: String
+}
+
+type Actions {
+  default: String
+}
+
+type InsightData {
+  created_at: String
+  likelihood: String
+  photos: [Photos]
+  request: Request
+  requestId: String
+  socialProfiles: [SocialProfiles]
+  status: String
+}
+
+type Photos {
+  isPrimary: String
+  type: String
+  typeId: String
+  typeName: String
+  url: String
+}
+
+type Request {
+  email: String
+}
+
+type SocialProfiles {
+  id: String
+  type: String
+  typeId: String
+  typeName: String
+  url: String
+  username: String
+}
+
+type Subscription {
+  oid: String
+}
+
+type Insight_user {
+  oid: String
+}

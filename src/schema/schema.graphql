@@ -2,6 +2,8 @@
 # import * as notification from './notification.graphql'
 # import * as orgUserConnection from './orgUserConnection.graphql'
 # import * as user from './user.graphql'
+# import * as user from './insight.graphql'
+# import * as user from './message.graphql'
 
 type Query {
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
@@ -30,5 +32,6 @@ type Mutation {
   deleteApproval(input: ApprovalDeleteInput): Approval  
   updateApprovals(input: [ApprovalInput], oid: String!, uid: String!, user: User_input!, status : String!, subject: String): Boolean
 
+  messageAdmin(oid: String!, msg: Message!): responsePayload
 
 }

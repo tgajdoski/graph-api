@@ -8,6 +8,7 @@ const { approvals_mutation } = require("./Mutation/approvals");
 const { allownotifications_mutation} = require("./Mutation/allownotifications");
 const {  boarding_connections_mutation} = require("./Mutation/boardingconnection");
 const { allowsms_mutation } = require("./Mutation/allowsms");
+const { message_mutations } = require("./Mutation/message");
 
 export default {
   Query: {
@@ -20,7 +21,8 @@ export default {
     ...approvals_mutation,
     ...allownotifications_mutation,
     ...allowsms_mutation,
-    ...boarding_connections_mutation
+    ...boarding_connections_mutation,
+    ...message_mutations
   }
   // Subscription,
   // AuthPayload,
