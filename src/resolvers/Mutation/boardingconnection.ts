@@ -1,3 +1,5 @@
+import { create } from "domain";
+
 const admin = require("firebase-admin");
 const Lodash = require("lodash");
 
@@ -83,14 +85,19 @@ export const boarding_connections_mutation = {
       ] =
         input.updated_at;
     } else {
-      connectionRef = connectionsRef.push();
+     //  console.log('connectionRef key', connectionRef.key);
       input = Lodash.assign(input, {
         "-created_at": 0 - Date.now(),
         created_at: created_at,
         created_by: input.uid,
         auth: {
-          firebase_id: input.auth.firebase_id,
-          provider: input.auth.provider
+          firebase_id: input.auth.firebase_id ? input.auth.firebase_id : null,
+          provider: input.auth.provider ? input.auth.provider : null,
+          oauth_token_secret: input.auth.oauth_token_secret ? input.auth.oauth_token_secret : null,
+          access_token: input.auth.access_token ? input.auth.access_token : null,
+          created_at: created_at,
+          expires: input.auth.expires ? input.auth.expires : null,
+          expires_in: input.auth.expires_in ? input.auth.expires_in : null
         }
       });
       // updates[`/connections/${connectionRef.key}`] = Lodash.omit(input, ['user', 'profile']);
@@ -131,7 +138,7 @@ export const boarding_connections_mutation = {
     // onBoarded ????
 
     try {
-      console.log("updates ", updates);
+    //  console.log("updates ", updates);
       await rootRef.update(updates);
       return true;
     } catch (error) {

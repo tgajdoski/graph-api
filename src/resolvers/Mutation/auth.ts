@@ -20,7 +20,6 @@ export const auth = {
       .auth()
       .signInWithEmailAndPassword(email, password);
     const user = data.user;
-
     if (!user) throw new Error(`No such user found for email: ${email}`);
     const user_org_snap = await admin
       .database()
@@ -79,21 +78,50 @@ export const auth = {
       });
     return response;
   },
+
+  async changeEmail(parent, { uid, email }, ctx, info) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
+   // console.log('ctx.request.user', ctx.request.user);
+    let response = admin.auth().updateUser(uid, {email: email})
+      .then(function() {
+        // Update successful.
+        return {
+          isSuccess: true,
+          error: null
+        };
+      })
+      .catch(function(error) {
+        // An error happened.
+        let err = error.code
+          ? { code: error.code, message: error.message }
+          : { code: "GENERIC_ERROR", message: error };
+        return {
+          isSuccess: false,
+          error: err
+        };
+      });
+
+    return response;
+  },
+
   async alreadyOnboarded(_, { oid, uid }, ctx) {
     if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
-    const orgsuserappRef = admin
+    const orgsuserappRef = admin;
     try {
-      let onboard = (await admin.database().ref(`/organization_users/${oid}/${uid}/settings/mobile/onboarded`).once("value")).val();
-      console.log('ONBOARD' , onboard);
+      let onboard = (await admin
+        .database()
+        .ref(`/organization_users/${oid}/${uid}/settings/mobile/onboarded`)
+        .once("value")).val();
+      console.log("ONBOARD", onboard);
       return {
-        isBoarded: onboard ?  true : false,
+        isBoarded: onboard ? true : false,
         error: null
       };
     } catch (error) {
-      console.log('error', error)
-     throw new Error(`error: cant check onboard`);
-    };
-  },  
+      console.log("error", error);
+      throw new Error(`error: cant check onboard`);
+    }
+  },
   async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
     try {
       await auth.login(parent, { email, password: oldpass }, ctx, info);

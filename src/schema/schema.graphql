@@ -13,14 +13,10 @@ type Query {
 type Mutation {
   login(email: String!, password: String!): AuthPayload!
   passwordResetEmail(email: String!): responsePayload
-  passwordUpdate(
-    email: String!
-    oid: String!
-    oldpass: String!
-    newpass: String!
-  ): responsePayload
+  passwordUpdate(email: String!,oid: String!, oldpass: String!, newpass: String!): responsePayload
   refreshTokens(refreshToken: String!): refreshPayload
   alreadyOnboarded(oid: String!, uid: String!): responseOnBoarded
+  changeEmail(uid: String!, email:String!): responsePayload
 
   disconnectConnection(input: ConnOrgUserConnInput!): Boolean
   completeOnBoarding(oid: String!, uid: String!): Boolean
@@ -31,7 +27,7 @@ type Mutation {
   allowSms(input: NotificationInput!, oid: String!): Boolean
 
   updateApproval(input: ApprovalInput): Approval
-  deleteApproval(input: ApprovalDeleteInput): Approval
+  deleteApproval(input: ApprovalDeleteInput): Approval  
   updateApprovals(input: [ApprovalInput], oid: String!, uid: String!, user: User_input!, status : String!, subject: String): Boolean
 
 
