@@ -21,6 +21,15 @@ export const auth = {
       .signInWithEmailAndPassword(email, password);
     const user = data.user;
    
+
+
+    if (!user) throw new Error(`No such user found for email: ${email}`);
+    const user_snap = await admin
+      .database()
+      .ref(`users/${user.uid}`)
+      .once("value");
+    const user_val = user_snap.val();
+
     if (!user) throw new Error(`No such user found for email: ${email}`);
     const user_org_snap = await admin
       .database()
@@ -29,6 +38,7 @@ export const auth = {
     const user_org = user_org_snap.val();
    
     let userwithoid = Lodash.pick(user, ["uid", "displayName", "email"]);
+    userwithoid.profile = user_val.profile;
 
     Object.assign(userwithoid, { oid: Object.keys(user_org)[0] });
 
