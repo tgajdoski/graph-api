@@ -1051,3 +1051,92 @@ mutation
       status:"sent"
   )
 }
+
+
+
+{
+	organizationUser(oid: "-KjOu2EQbfZb_sxUnwJV",
+        uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
+  {
+      uid
+    account_type
+    email
+    oid
+    profile
+    {
+      firstName
+      lastName
+      name
+      slug
+      welcome{
+        connected
+        curated
+        searched
+        welcomed
+      }
+      timezone
+    }
+    roles{
+      admin
+      freelancer
+      user
+    }
+    settings{
+      locale
+      mobile {
+        onboarded
+      }
+      notifications {
+        push
+        {
+          off
+        }
+      }
+      sms{
+        phone_details{
+          countrycode
+          formatedNumber
+          intlprefix
+          phonenumber
+        }
+        platform 
+        push{
+          off
+        }
+      }
+    }
+  }
+}
+
+recieve only settings from organization_user:
+
+{
+	organizationUser(oid: "-KjOu2EQbfZb_sxUnwJV",
+        uid: "JH6TcumpfnMDdor6c5Ksns917cq1")
+  {
+    settings{
+      locale
+      mobile {
+        onboarded
+      }
+      notifications {
+        push
+        {
+          off
+        }
+      }
+      sms{
+        phone_details{
+          countrycode
+          formatedNumber
+          intlprefix
+          phonenumber
+        }
+        platform 
+        push{
+          off
+        }
+      }
+    }
+  }
+}

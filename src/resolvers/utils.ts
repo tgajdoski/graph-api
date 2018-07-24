@@ -75,7 +75,7 @@ const utils =  {
         profile: Lodash.pick(user["profile"], profile_fields)
       }
     };
-    console.log('sending msg', messsage);
+    // console.log('sending msg', messsage);
     let taskRef = admin.database().ref(`/queues/share/tasks`).push();
     messsage["created_at"] = admin.database.ServerValue.TIMESTAMP;
     messsage["_id"] = taskRef.key;

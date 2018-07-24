@@ -5,6 +5,7 @@ const orgsusrconnRef = admin.database().ref("organization_users");
 
 export const organizationAdmins = {
   async organizationAdmins(_, { oid }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     const orgsRef = orgsusrconnRef.child(`${oid}`);
     let adminsSnap = (await orgsRef.orderByChild("roles/admin").equalTo(true).once("value"));
     let admins = [];
