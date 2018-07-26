@@ -1051,3 +1051,27 @@ mutation
       status:"sent"
   )
 }
+
+
+mutation {
+  messageAdmin(oid:"-KjOu2EQbfZb_sxUnwJV", msg:"vidi sto ke se zapise",
+  user:{
+      profile: {
+        firstName:"Toni",
+        lastName:"Gajdoski",
+        name:"Toni Gajdo",
+        slug:"tonigajdo",
+      },
+      email:"t.gajdoski@gmail.com",
+    },
+    subject:"Qnary Admins <qnary_admins@qnary.com>",
+    from:"Message to admin from Toni Gajdo"
+  )
+  {
+    isSuccess
+    error{
+      code
+      message
+    }
+  }
+}
