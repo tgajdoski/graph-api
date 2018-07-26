@@ -2,7 +2,7 @@ import { auth } from "./Mutation/auth";
 const { approvals } = require("./Query/approvals");
 const { organizationUserConnections} = require("./Query/organizationUserConnections");
 const { organizationAdmins} = require("./Query/organizationAdmins");
-
+const { organizationUser} = require("./Query/organizationUser");
 
 const { approvals_mutation } = require("./Mutation/approvals");
 const { allownotifications_mutation} = require("./Mutation/allownotifications");
@@ -14,7 +14,8 @@ export default {
   Query: {
     ...approvals,
     ...organizationUserConnections,
-    ...organizationAdmins
+    ...organizationAdmins,
+    ...organizationUser
   },
   Mutation: {
     ...auth,

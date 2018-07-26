@@ -9,6 +9,7 @@ type Query {
   organizationUserConnections(oid: String!, uid: String!): [ConnOrgUserConn]
 
   organizationAdmins(oid: String!) : [User]
+  organizationUser(oid: String!, uid: String!): User
 }
 
 type Mutation {

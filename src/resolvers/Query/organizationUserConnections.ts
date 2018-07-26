@@ -6,6 +6,7 @@ const connectionsRef = admin.database().ref("connections");
 
 export const organizationUserConnections = {
   async organizationUserConnections(_, { oid, uid }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     const orgsRef = orgsusrconnRef.child(`${oid}/${uid}`);
     let oucs = await query({}, ctx, orgsRef);
     let output = [];

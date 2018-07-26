@@ -73,6 +73,7 @@ export const auth = {
     throw new Error(`error: cant refresh tokens`);
   },
   async passwordResetEmail(parent, { email }, ctx, info) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     let auth = firebase.auth();
     let response = await auth
       .sendPasswordResetEmail(email)
@@ -128,7 +129,7 @@ export const auth = {
         .database()
         .ref(`/organization_users/${oid}/${uid}/settings/mobile/onboarded`)
         .once("value")).val();
-      console.log("ONBOARD", onboard);
+     //  console.log("ONBOARD", onboard);
       return {
         isBoarded: onboard ? true : false,
         error: null
@@ -139,6 +140,7 @@ export const auth = {
     }
   },
   async passwordUpdate(parent, { email, oid, oldpass, newpass }, ctx, info) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     try {
       await auth.login(parent, { email, password: oldpass }, ctx, info);
       const user = firebase.auth().currentUser;

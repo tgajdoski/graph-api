@@ -10,8 +10,9 @@ type User {
   account_type: String
   email: String
   oid: String
-  profile: User_Profile
+  profile:  User_Profile
   roles: Role
+  settings: UserSettings
 }
 
 type User_Profile {
@@ -42,6 +43,40 @@ type Role {
   freelancer: Boolean
   user: Boolean
 }
+
+type UserSettings {
+  locale: String
+  mobile: UserMobile
+  notifications: UserNotification
+  sms : SmsType
+}
+
+type UserMobile{
+  onboarded: String
+}
+
+type UserNotification{
+  push: PushType
+}
+
+type PushType{
+  off: Boolean
+}
+
+type SmsType{
+  phone_details: phoneDetails
+  platform: String
+  push: PushType
+}
+
+type phoneDetails{
+ 		countrycode: String
+		formatedNumber: String
+		intlprefix: String
+		phonenumber: String
+}
+
+
 
 input User_input {
   uid: String

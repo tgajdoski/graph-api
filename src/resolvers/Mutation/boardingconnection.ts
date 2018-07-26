@@ -7,6 +7,7 @@ const rootRef = admin.database().ref();
 
 export const boarding_connections_mutation = {
   async disconnectConnection(_, { input }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     let updates = {};
     updates[
       `/organization_user_connections/${input.oid}/${input.uid}/${input.id}`
@@ -147,6 +148,7 @@ export const boarding_connections_mutation = {
     }
   },
   async clearDeviceCache(_, { oid, uid }, ctx) {
+    if (Lodash.isNil(ctx.request.user)) throw new Error(`Unauthorized request`);
     var updates = {};
     updates[
       `/organization_users/${oid}/${uid}/settings/mobile/onboarded`
