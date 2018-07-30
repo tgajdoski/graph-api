@@ -1,0 +1,104 @@
+
+type Actions {
+  default: String
+}
+
+type InsightData {
+  created_at: String
+  likelihood: String
+  photos: [Photos]
+  request: Request
+  requestId: String
+  socialProfiles: [SocialProfiles]
+  status: String
+}
+
+type Photos {
+  isPrimary: String
+  type: String
+  typeId: String
+  typeName: String
+  url: String
+}
+
+type Request {
+  email: String
+}
+
+type SocialProfiles {
+  id: String
+  type: String
+  typeId: String
+  typeName: String
+  url: String
+  username: String
+}
+
+type Subscription {
+  oid: String
+}
+
+type Insight_user {
+  _id: String
+  oid: String
+  search_group: searchGroup
+  tags: Tags
+  uid: String
+}
+
+type searchGroup{
+  _id: String
+}
+
+type Tags{
+  rating: Rating
+}
+
+type Rating{
+  created_at: String
+  created_by: String
+  oid: String
+  search_group_id: String
+  value: String
+}
+
+type Alert  {
+  data: alertData
+  id: String
+  search: search
+  search_result: searchResult
+}
+
+type search {
+  _id: String
+  q: String
+  source: String
+  type: String
+}
+
+type searchResult{
+  _id: String
+}
+
+type alertData {
+  _id: String
+  description: description
+  link: String
+  position: position
+  title: title
+}
+
+type description{
+  l: String
+  r: String
+}
+
+type position{
+  l: String
+  r: String
+}
+
+type title {
+  l: String
+  r: String
+}

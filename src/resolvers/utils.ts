@@ -1,10 +1,9 @@
-
 const admin = require('firebase-admin');
 const Lodash = require("lodash");
 import { organizationAdmins } from './Query/organizationAdmins';
 
 const utils =  {
-  
+
   async notifyAdminApproval(_, {oid, msg}, ctx) {
     let update = {};
     let admins = await organizationAdmins.organizationAdmins(_, {oid}, ctx);
@@ -57,27 +56,13 @@ const utils =  {
         profile: Lodash.pick(user.profile, profile_fields),
       }
     };
-<<<<<<< HEAD
-
-
     return message;
   },
   async getAdminInsightMessage(_, {oid, insight, user, subject}, ctx) {
     let message = {};
 
     return message;
-=======
-    // console.log('sending msg', messsage);
-    let taskRef = admin.database().ref(`/queues/share/tasks`).push();
-    messsage["created_at"] = admin.database.ServerValue.TIMESTAMP;
-    messsage["_id"] = taskRef.key;
-    messsage["_task_id"] = taskRef.key;
-    messsage["_app_id"] = "ios: version";
-    update[`/queues/share/tasks/${taskRef.key}`] = messsage;
-    return update;
->>>>>>> 209883bf7232a2b9e1db32f035cb0c577b8a816a
-  },
-
+  }
 }
 
 export default utils;

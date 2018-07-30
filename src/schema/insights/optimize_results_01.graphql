@@ -1,0 +1,46 @@
+
+type optimizeResults01{
+  actions: Actions
+  category: String
+  category_type_version: String
+  created_at: String
+  created_by: String
+  oid: String
+  optimizations: Int
+  results: results
+  source: String
+  type: String
+  uid: String
+  version: String
+}
+
+type results{
+    current: current
+}
+
+type current{
+    pending: Int
+    results: cureentResults 
+    total: Int
+}
+
+
+type cureentResults {
+    twitter_001_01: twittertype
+    twitter_002_01: twittertype
+    twitter_003_01: twittertype
+    twitter_004_01: twittertype
+    twitter_005_01: twittertype
+    twitter_006_01: twittertype
+    twitter_007_01: twittertype
+    twitter_008_01: twittertype
+    twitter_009_01: twittertype
+}
+
+type twittertype{
+    provider: String
+    source: String
+    status: String
+    type: String
+    version: String
+}

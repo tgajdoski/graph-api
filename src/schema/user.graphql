@@ -85,6 +85,7 @@ input User_input {
   oid: String
   profile: User_Profile_input
   roles: Role_input
+  settings: UserSettings_input
 }
 
 input User_Profile_input {
@@ -94,6 +95,42 @@ input User_Profile_input {
   slug: String
   welcome: Welcome_input
   timezone: String
+}
+
+input UserSettings_input {
+  locale: String
+  mobile: UserMobile_input
+  notifications: UserNotification_input
+  sms : SmsType_input
+}
+
+
+input SmsType_input{
+  phone_details: phoneDetails_input
+  platform: String
+  push: PushType_input
+}
+
+input phoneDetails_input{
+ 		countrycode: String
+		formatedNumber: String
+		intlprefix: String
+		phonenumber: String
+}
+
+
+
+input UserMobile_input{
+  onboarded: String
+}
+
+input UserNotification_input{
+  push: PushType_input
+}
+
+
+input PushType_input{
+  off: Boolean
 }
 
 input Welcome_input {

@@ -1,0 +1,16 @@
+
+type scanResults01 {
+  actions: Actions
+  category: String
+  category_type_version: String
+  created_at: String
+  created_by: String
+  data: InsightData
+  oid: String
+  subscription: Subscription
+  type: String
+  uid: String
+  user: Insight_user
+  version: String
+}
+

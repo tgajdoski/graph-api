@@ -1,0 +1,13 @@
+
+type contentOptimizeResults01
+{
+  actions: Actions
+  category: String
+  category_type_version: String
+  created_at: String
+  created_by: String
+  oid: String
+  type: String,
+  uid: String
+  version: String
+}

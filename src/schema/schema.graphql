@@ -2,7 +2,11 @@
 # import * as notification from './notification.graphql'
 # import * as orgUserConnection from './orgUserConnection.graphql'
 # import * as user from './user.graphql'
-# import * as user from './insight.graphql'
+# import * as user from './insights/insight.graphql'
+# import * as user from './insights/optimize_results_01.graphql'
+# import * as user from './insights/content_optimize_results_01.graphql'
+# import * as user from './insights/scan_results_01.graphql'
+# import * as user from './insights/search_changed_01.graphql'
 
 type Query {
   userapprovals(oid: String!, uid: String!, status: String): [Approval]
@@ -10,6 +14,7 @@ type Query {
 
   organizationAdmins(oid: String!) : [User]
   organizationUser(oid: String!, uid: String!): User
+  userInsights(oid: String!, uid: String!,lastInsightID: String , numberOfResultsToGrab: Int): Boolean
 }
 
 type Mutation {
@@ -33,5 +38,7 @@ type Mutation {
   updateApprovals(input: [ApprovalInput], oid: String!, uid: String!, user: User_input!, status : String!, subject: String): Boolean
 
   messageAdmin(oid: String!, msg: String!, user: User_input!, subject: String!, from: String!): responsePayload
+
+  updateOrganizationUser(input: User_input!): User
   
 }

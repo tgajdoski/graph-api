@@ -755,7 +755,34 @@ account_type
   }
 }
 
+// only noti and sms settings 
 
+	mutation{
+  updateOrganizationUser (input:{
+    uid:"JH6TcumpfnMDdor6c5Ksns917cq1"
+		oid:"-KjOu2EQbfZb_sxUnwJV"
+    settings: {
+      notifications: {
+        push: {
+          off: true
+        }
+      }
+    }
+  })
+    {
+      settings{
+        locale
+        mobile{
+          onboarded
+        }
+        notifications{
+          push{
+            off
+          }
+        }
+      }
+  }
+}
 
 
 
@@ -1067,6 +1094,19 @@ mutation {
     subject:"Qnary Admins <qnary_admins@qnary.com>",
     from:"Message to admin from Toni Gajdo"
   )
+  {
+    isSuccess
+    error{
+      code
+      message
+    }
+  }
+}
+
+
+
+mutation{
+  changeEmail(uid:"JH6TcumpfnMDdor6c5Ksns917cq1", email:"tgajdoski@yahoo.com")
   {
     isSuccess
     error{
